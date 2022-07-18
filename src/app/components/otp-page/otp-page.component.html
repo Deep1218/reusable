@@ -1,0 +1,11 @@
+<div class="container">
+  <form [formGroup]="otpForm" (ngSubmit)="verify()">
+    <h2>OTP Verification</h2>
+    <div *ngFor="let i of numbers" class="controls">
+      <input type="number" min="0" max="9" [formControlName]="i" id="i" />
+    </div>
+    <div class="action">
+      <button type="submit">Verify</button>
+    </div>
+  </form>
+</div>
