@@ -1,0 +1,82 @@
+<div
+  class="d-flex flex-column container-fluid justify-content-center align-items-center p-4"
+  style="width: 100%; height: 100vh; background-color: rgb(243 244 246)"
+>
+  <div class="row bg-white border text-center px-4" style="width: 498px">
+    <div
+      class="col-12 my-3 pt-3 d-flex justify-content-center align-items-center"
+    >
+      <span class="fw-bold fs-3">Welcome Back</span>
+    </div>
+    <div class="col-12">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()" class="my-3">
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Email"
+            formControlName="email"
+            [ngClass]="{
+              'is-valid': loginForm.get('email')?.valid,
+              'is-invalid':
+                !loginForm.get('email')?.valid &&
+                loginForm.get('email')?.touched
+            }"
+          />
+          <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            formControlName="password"
+            [ngClass]="{
+              'is-valid': loginForm.get('password')?.valid,
+              'is-invalid':
+                !loginForm.get('password')?.valid &&
+                loginForm.get('password')?.touched
+            }"
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating mb-3">
+          <ngx-recaptcha2
+            #captchaElem
+            [siteKey]="'6Le2VwEhAAAAALrob9hjQt8fpgHO8x1LRiI25JeH'"
+            (reset)="handleReset()"
+            (expire)="handleExpire()"
+            (load)="handleLoad()"
+            (success)="handleSuccess($event)"
+            [useGlobalDomain]="false"
+            [size]="'normal'"
+            [hl]="'en'"
+            [theme]="'light'"
+            [type]="'image'"
+            formControlName="recaptcha"
+          >
+          </ngx-recaptcha2>
+        </div>
+
+        <div class="d-grid gap-2 mb-3">
+          <button class="btn btn-primary fw-bold" [disabled]="!loginForm.valid">
+            Log in
+          </button>
+        </div>
+        <div class="d-flex mb-3 justify-content-center">
+          <a routerLink="" class="link text-small fw-bold">Forgot password?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row bg-white border text-center mt-3" style="width: 498px">
+    <div class="col-12 px-4 py-3">
+      <p class="text-black mb-0 px-4">
+        Don't have an account?
+        <a routerLink="" class="link text-primary fw-bold m-0 p-0">Sign Up</a>
+      </p>
+    </div>
+  </div>
+</div>
