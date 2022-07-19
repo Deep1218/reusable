@@ -42,7 +42,12 @@
           />
           <label for="floatingPassword">Password</label>
         </div>
-        <div class="form-floating mb-3">
+        <div
+          class="form-floating mb-3"
+          *ngIf="
+            loginForm.get('email')?.valid && loginForm.get('password')?.valid
+          "
+        >
           <ngx-recaptcha2
             #captchaElem
             [siteKey]="'6Le2VwEhAAAAALrob9hjQt8fpgHO8x1LRiI25JeH'"
