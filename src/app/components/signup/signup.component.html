@@ -1,0 +1,97 @@
+<div
+  class="d-flex flex-column container-fluid justify-content-center align-items-center p-4"
+  style="width: 100%; height: 100vh; background-color: rgb(243 244 246)"
+>
+  <div class="row bg-white border text-center px-4" style="width: 498px">
+    <div class="col my-3 pt-3 d-flex justify-content-center align-items-center">
+      <span class="fw-bold fs-3">Welcome</span>
+    </div>
+    <div class="col-12">
+      <form [formGroup]="signupForm" class="my-3">
+        <div class="row gx-1">
+          <div class="col-6">
+            <div class="form-floating mb-2">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="firstName"
+                formControlName="firstName"
+              />
+              <label for="floatingInput">First Name</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-floating mb-2">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="lastName"
+                formControlName="lastName"
+              />
+              <label for="floatingInput">Last Name</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-floating mb-2">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="username"
+            formControlName="username"
+          />
+          <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="email"
+            formControlName="email"
+          />
+          <label for="floatingInput">Email</label>
+        </div>
+        <div class="row gx-1 mb-3">
+          <div class="col-6">
+            <div class="form-floating mb-2">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+                formControlName="password"
+              />
+              <label for="floatingPassword">Password</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-floating mb-2">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="confirmPassword"
+                formControlName="confirmPassword"
+              />
+              <label for="floatingPassword">Confirm Password</label>
+            </div>
+          </div>
+        </div>
+        <div class="d-grid gap-2 mb-3">
+          <button class="btn btn-primary fw-bold">Sign up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row bg-white border text-center mt-3" style="width: 498px">
+    <div class="col-12 px-4 py-3">
+      <p class="text-black mb-0 px-4">
+        Have an account?
+        <a routerLink="" class="link text-primary fw-bold m-0 p-0">Log in</a>
+      </p>
+    </div>
+  </div>
+</div>
