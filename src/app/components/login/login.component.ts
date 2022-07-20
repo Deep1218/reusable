@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ReCaptcha2Component } from 'ngx-captcha';
+import { FormsService } from 'src/app/service/forms.service';
 
 @Component({
   selector: 'app-login',
@@ -11,33 +12,9 @@ export class LoginComponent implements OnInit {
   @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-          ),
-        ],
-      ],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{8,64})'
-          ),
-        ],
-      ],
-      recaptcha: ['', Validators.required],
-    });
+  constructor(private formService: FormsService) {
+    this.loginForm = this.formService.createForm('email');
   }
-  // Regex for Password :-
-  // - Min 8 character and Max 64 character
-  // - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
-  // - Can contain special characters
 
   ngOnInit(): void {}
 
@@ -45,6 +22,7 @@ export class LoginComponent implements OnInit {
     console.log('Form submitted');
   }
 
+  // Below methods are used only for recaptcha
   handleSuccess(data: any) {
     console.log(data);
   }

@@ -45,7 +45,9 @@
         <div
           class="form-floating mb-3"
           *ngIf="
-            loginForm.get('email')?.valid && loginForm.get('password')?.valid
+            loginForm.get('email')?.valid &&
+            loginForm.get('password')?.valid &&
+            loginForm.contains('recaptcha')
           "
         >
           <ngx-recaptcha2
