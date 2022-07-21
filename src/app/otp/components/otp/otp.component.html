@@ -1,0 +1,30 @@
+<div
+  class="otpContainer d-flex justify-content-center align-items-center w-100 vh-100"
+>
+  <form class="px-4 py-5" [formGroup]="otpForm" (ngSubmit)="verify()">
+    <h2 class="heading py-2 mx-1">{{ formTitle }}</h2>
+    <div class="content py-2 mx-1">{{ formMessage }}</div>
+    <div class="d-flex py-4">
+      <input
+        (keyup)="onInput($event)"
+        *ngFor="let i of numbers"
+        class="form-control form-control-sm mx-1 text-center"
+        type="number"
+        min="0"
+        max="9"
+        [formControlName]="i"
+        [id]="i"
+      />
+    </div>
+    <div class="d-flex justify-content-center p-1">
+      <button
+        [class.spinner]="loaderVisible"
+        [disabled]="loaderVisible"
+        class="btn btn-primary p-2 w-100 position-relative"
+        type="submit"
+      >
+        Verify
+      </button>
+    </div>
+  </form>
+</div>

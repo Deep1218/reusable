@@ -1,27 +1,55 @@
-# Reusable
+# OTP UI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+This project is about OTP UI
 
-## Development server
+## Project Prerequisite
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Angular CLI v13.0.0
+2. Node.js v16.16.0
+3. Project uses [ngx-bootstrap](https://www.npmjs.com/package/ngx-bootstrap) v8.0.0, To add ngx-bootstrap : <br /> `ng add ngx-bootstrap@8.0.0`
 
-## Code scaffolding
+## Adding Component to your project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Copy OTP module [folder](https://github.com/Deep1218/reusable/tree/otp-ui/src/app) to your project
+2. Add OtpModule to your module
+3. Use OtpService in your compoent
+4. See how to use OtpService
 
-## Build
+## Running Development server
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. `npm i` in root directory
+2. `ng serve` for dev server (`http://localhost:4200/`)
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Documentation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+See [appComponent](https://github.com/Deep1218/reusable/blob/otp-ui/src/app/app.component.ts) for example.
 
-## Further help
+### OtpService.show({params})
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+&nbsp;&nbsp;Display OTP form compoent to UI with given params.
+| Params | Type | Default | Description |
+| ----------- | ------ | ------------------------------------------- | ------------------------------------------------------------------------- |
+| formTitle | string | OTP Verification | Display title of the form. |
+| formMessage | string | Please enter the OTP that we have sent you. | Display message in small font. for ex. (we have sent mail to xyz@abc.com) |
+| otpLength | number | 4 | Length Of OTP |
+
+### OtpService.hide()
+
+&nbsp;&nbsp; To manually hide OTP component from UI, no params reqired.
+
+### OtpService.onVerify
+
+&nbsp;&nbsp; You can subscribe to this Observable. <br />
+&nbsp;&nbsp; It will be called when user press verify button with OTP as a value. <br />
+&nbsp;&nbsp; Example:
+&nbsp;&nbsp;
+
+```
+this.otpService.onVerify.subscribe((otp) => {
+  console.log(otp);
+});
+```
