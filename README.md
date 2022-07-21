@@ -13,7 +13,7 @@ This project is about OTP UI
 1. Copy OTP module [folder](https://github.com/Deep1218/reusable/tree/otp-ui/src/app) to your project
 2. Add OtpModule to your module
 3. Use OtpService in your compoent
-4. See how to use OtpService
+4. See [documentation](https://github.com/Deep1218/reusable/tree/otp-ui#documentation) for more details
 
 ## Running Development server
 
