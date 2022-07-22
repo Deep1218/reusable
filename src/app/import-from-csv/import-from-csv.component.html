@@ -1,0 +1,15 @@
+<label for="importfromcsv"><input type="file" id="importfromcsv" accept=".xlsx,.csv,.xls"
+        (change)="handleImport($event)">
+</label>
+<div *ngIf="importedData">
+    <table class="table">
+        <tr>
+            <th *ngFor="let propertyName of propertyNames"><input type="text" [value]="propertyName"></th>
+        </tr>
+        <tr *ngFor="let data of importedData; let i =index">
+            <th *ngFor="let propertyName of propertyNames"> {{data[propertyName]}}</th>
+        </tr>
+    </table>
+    <button>Update</button>
+    <button>Upload</button>
+</div>
