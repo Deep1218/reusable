@@ -14,7 +14,7 @@ export class ExportToCsvComponent implements OnInit {
   }
 
   fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-  fileExtension = '.csv';
+  fileExtension = '.xlsx';
 
   propertyNames:any = ['id','firstName', 'lastName', 'email']
   data:any[] = [
@@ -69,4 +69,50 @@ export class ExportToCsvComponent implements OnInit {
     FileSaver.saveAs(data, fileName + this.fileExtension);
   }
   
+  
+
+  public exportToCsv(rows: object[], fileName: string, columns?: string[]): any {
+    console.log(rows);
+    console.log(fileName);
+    console.log(columns);
+    
+    
+    
+    if (!rows || !rows.length) {
+      return;
+    }
+    const separator = ',';
+    const keys = Object.keys(rows[0]).filter(k => {
+      if (columns?.length) {
+        return columns.includes(k);
+      } else {
+        return true;
+      }
+    });
+    console.log(keys,"keysss");
+    
+    const csvContent =
+      keys.join(separator) +
+      '\n' +
+      rows.map((row:any) => {
+        return keys.map(k => {
+          let cell = row[k] === null || row[k] === undefined ? '' : row[k];
+          cell = cell instanceof Date
+            ? cell.toLocaleString()
+            : cell.toString().replace(/"/g, '""');
+          if (cell.search(/("|,|\n)/g) >= 0) {
+            cell = `"${cell}"`;
+          }
+          return cell;
+        }).join(separator);
+      }).join('\n');
+    this.saveAsFile(csvContent, `${fileName}.csv`, 'csv');
+  }
+
+  private saveAsFile(buffer: any, fileName: string, fileType: string): void {
+    console.log(fileType);
+    
+    const data: Blob = new Blob([buffer], { type: fileType });
+    FileSaver.saveAs(data, fileName);
+  }
 }
