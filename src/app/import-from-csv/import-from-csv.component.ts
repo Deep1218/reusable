@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { read, utils } from 'xlsx';
-import { Employee } from '../csvData';
 
 @Component({
   selector: 'app-import-from-csv',
@@ -8,8 +7,10 @@ import { Employee } from '../csvData';
   styleUrls: ['./import-from-csv.component.css'],
 })
 export class ImportFromCsvComponent implements OnInit {
-  propertyNames: Employee[] = [];
-  importedData: any;
+  propertyNames: any[] = [];
+  importedData: any
+  isUpdating: boolean = false;
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -30,8 +31,8 @@ export class ImportFromCsvComponent implements OnInit {
           const sheets = wb.SheetNames;
           if (sheets.length) {
             const rows = utils.sheet_to_csv(wb.Sheets[sheets[0]]);
-            const a = utils.sheet_to_json(wb.Sheets[sheets[0]]);
-            console.log(a);
+            // const a = utils.sheet_to_json(wb.Sheets[sheets[0]]);
+            // console.log(a);
 
             this.importedData = this.importDataFromCSV(rows);
           }
@@ -42,6 +43,58 @@ export class ImportFromCsvComponent implements OnInit {
       }
     }
   }
+
+  // onUpdate(i: any) {
+  //   this.isUpdating = true;
+  //   console.log(i);
+  //   let ele = document.getElementsByClassName(i);
+  //   console.log(ele);
+
+  //   console.log(ele[0]);
+  //   for (let i = 0; i < ele.length; i++) {
+  //     console.log(ele[i]);
+  //     var tag = document.createElement('input');
+  //     tag.value = ele[i].innerHTML;
+  //     ele[i].appendChild(tag);
+  //   }
+
+  //   // let ele = document.getElementById(i);
+  //   // console.log(ele?.childNodes);
+  //   // ele.forEach((e: any) => {
+  //   //   console.log(e);
+
+  //   // if (typeof e.innerHTML == 'string') {
+  //   //   console.log('hii');
+  //   //   var tag = document.createElement('input');
+  //   //   tag.value = e.innerHTML;
+  //   //   e.appendChild(tag);
+  //   // }
+  //   // console.log(typeof e.innerHTML);
+  //   // });
+  // }
+
+  onSave(i: any) {
+    console.log(this.importedData);
+    this.importedData[i].edit = false;
+  }
+
+  onEdit(i: any) {
+    console.log(i);
+    this.importedData[i].edit = true;
+    this.importedData
+      .filter((data: any, index: number) => i !== index)
+      .forEach((data: any) => {
+        data.edit = false;
+      });
+  }
+
+  onUpload() {
+    console.log(this.importedData);
+  }
+
+  // onCancel(i: any) {
+  //   this.importedData[i].edit = false;
+  // }
 
   importDataFromCSV(csvText: string): Array<any> {
     this.propertyNames = csvText.slice(0, csvText.indexOf('\n')).split(',');
@@ -61,11 +114,13 @@ export class ImportFromCsvComponent implements OnInit {
         }
 
         obj[propertyName] = val;
+        obj.edit = false;
       }
 
       dataArray.push(obj);
     });
 
+    console.log(dataArray);
     return dataArray;
   }
 }
