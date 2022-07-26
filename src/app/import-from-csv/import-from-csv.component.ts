@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { read, utils } from 'xlsx';
-import { ImportFromCsvService } from '../import-from-csv.service';
+import { ImportFromCsvService } from './service/import-from-csv.service';
 
 @Component({
   selector: 'app-import-from-csv',

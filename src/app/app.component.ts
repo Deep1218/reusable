@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ImportFromCsvService } from './import-from-csv.service';
+import { ImportFromCsvService } from './import-from-csv/service/import-from-csv.service';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +28,7 @@ export class AppComponent {
       console.log(this.importedData);
   
       // call your api here to pass the data in the backend
+      alert("Data Uploaded Successfully!!")
     }
   }
 }
