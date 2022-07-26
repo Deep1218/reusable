@@ -1,118 +1,63 @@
 import { Component, OnInit } from '@angular/core';
-import * as FileSaver from 'file-saver';
-import  * as XLSX from 'xlsx'
+import { ExportService } from '../export.service';
+
 @Component({
   selector: 'app-export-to-csv',
   templateUrl: './export-to-csv.component.html',
-  styleUrls: ['./export-to-csv.component.css']
+  styleUrls: ['./export-to-csv.component.css'],
 })
+
 export class ExportToCsvComponent implements OnInit {
 
-  constructor() { }
+  constructor(private exportService:ExportService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-  fileExtension = '.xlsx';
+  propertyNames: any = ['id', 'firstName', 'lastName', 'email'];
+  data: any[] = [
+    {
+      id: 1,
+      firstName: 'abc',
+      lastName: null,
+      email: 'abc@gmail.com',
+    },
+    {
+      id: 2,
+      firstName: 'abc',
+      lastName: 'xyz',
+      email: 'abc@gmail.com',
+    },
+    {
+      id: 3,
+      firstName: null,
+      lastName: 'xyz',
+      email: 'abc@gmail.com',
+    },
+    {
+      id: 4,
+      firstName: 'abc',
+      lastName: 'xyz',
+      email: 'abc@gmail.com',
+    },
+    {
+      id: 5,
+      firstName: 'abc',
+      lastName: 'xyz',
+      email: 'abc@gmail.com',
+    },
+    {
+      id: 6,
+      firstName: 'abc',
+      lastName: 'xyz',
+      email: 'abc@gmail.com',
+    },
+  ];
 
-  propertyNames:any = ['id','firstName', 'lastName', 'email']
-  data:any[] = [
-    {
-      id:1,
-      firstName:"abc",
-      lastName:null,
-      email:"abc@gmail.com"
-    },
-    {
-      id:2,
-      firstName:"abc",
-      lastName:"xyz",
-      email:"abc@gmail.com"
-    },
-    {
-      id:3,
-      firstName:null,
-      lastName:"xyz",
-      email:"abc@gmail.com"
-    },
-    {
-      id:4,
-      firstName:"abc",
-      lastName:"xyz",
-      email:"abc@gmail.com"
-    },
-    {
-      id:5,
-      firstName:"abc",
-      lastName:"xyz",
-      email:"abc@gmail.com"
-    },
-    {
-      id:6,
-      firstName:"abc",
-      lastName:"xyz",
-      email:"abc@gmail.com"
-    },
-  ]
-
-  exportToExcel(){
-    // let jsonData:any = JSON.stringify(this.data)
-    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data)
-    const wb: XLSX.WorkBook = { Sheets: { 'data': ws }, SheetNames: ['data'] };
-    const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-    this.saveExcelFile(excelBuffer, 'Reports');
-  }
-
-  private saveExcelFile(buffer: any, fileName: string): void {
-    const data: Blob = new Blob([buffer], {type: this.fileType});
-    FileSaver.saveAs(data, fileName + this.fileExtension);
+  exportToExcel(jsonData: any[], fileName: string) {
+    this.exportService.exportToExcel(jsonData,fileName)
   }
   
-  
-
-  public exportToCsv(rows: object[], fileName: string, columns?: string[]): any {
-    console.log(rows);
-    console.log(fileName);
-    console.log(columns);
-    
-    
-    
-    if (!rows || !rows.length) {
-      return;
-    }
-    const separator = ',';
-    const keys = Object.keys(rows[0]).filter(k => {
-      if (columns?.length) {
-        return columns.includes(k);
-      } else {
-        return true;
-      }
-    });
-    console.log(keys,"keysss");
-    
-    const csvContent =
-      keys.join(separator) +
-      '\n' +
-      rows.map((row:any) => {
-        return keys.map(k => {
-          let cell = row[k] === null || row[k] === undefined ? '' : row[k];
-          cell = cell instanceof Date
-            ? cell.toLocaleString()
-            : cell.toString().replace(/"/g, '""');
-          if (cell.search(/("|,|\n)/g) >= 0) {
-            cell = `"${cell}"`;
-          }
-          return cell;
-        }).join(separator);
-      }).join('\n');
-    this.saveAsFile(csvContent, `${fileName}.csv`, 'csv');
-  }
-
-  private saveAsFile(buffer: any, fileName: string, fileType: string): void {
-    console.log(fileType);
-    
-    const data: Blob = new Blob([buffer], { type: fileType });
-    FileSaver.saveAs(data, fileName);
+  exportToCsv(jsonData: any[], fileName:string) {
+   this.exportService.exportToCsv(jsonData, fileName)
   }
 }
