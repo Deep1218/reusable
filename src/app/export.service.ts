@@ -28,9 +28,8 @@ export class ExportService {
     const fileExtension = '.csv';
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(jsonData);
     const csvOutput: string = XLSX.utils.sheet_to_csv(worksheet);
-    FileSaver.saveAs(
-      new Blob([csvOutput], { type: fileType }),
-      `${fileName}${fileExtension}`
-    );
+    const data: Blob = new Blob([csvOutput], { type: fileType });
+    FileSaver.saveAs(data, fileName + fileExtension);
   }
-}
+ }
+

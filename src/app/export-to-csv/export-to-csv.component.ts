@@ -54,6 +54,8 @@ export class ExportToCsvComponent implements OnInit {
   ];
 
   exportToExcel(jsonData: any[], fileName: string) {
+    console.log("hii");
+    
     this.exportService.exportToExcel(jsonData,fileName)
   }
   
