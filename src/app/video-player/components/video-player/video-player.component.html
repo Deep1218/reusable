@@ -1,0 +1,162 @@
+<div class="video-container">
+  <div
+    class="video"
+    #videoWithControls
+    tabindex="-1"
+    (keydown)="handelKeyEvent($event)"
+    (mousemove)="showControls()"
+  >
+    <video
+      #video
+      (loadedmetadata)="setDuration()"
+      (canplay)="hideLoader()"
+      (waiting)="showLoader()"
+      preload="metadata"
+    ></video>
+    <div class="controls">
+      <div
+        class="top-control center"
+        (click)="tooglePlayPause()"
+        (dblclick)="toogleFullScreen()"
+      >
+        <div class="left-seek center">
+          <svg
+            #leftSeek
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M77.25 256l137.4-137.4c12.5-12.5 12.5-32.75 0-45.25s-32.75-12.5-45.25 0l-160 160c-12.5 12.5-12.5 32.75 0 45.25l160 160C175.6 444.9 183.8 448 192 448s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25L77.25 256zM269.3 256l137.4-137.4c12.5-12.5 12.5-32.75 0-45.25s-32.75-12.5-45.25 0l-160 160c-12.5 12.5-12.5 32.75 0 45.25l160 160C367.6 444.9 375.8 448 384 448s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25L269.3 256z"
+            />
+          </svg>
+        </div>
+
+        <div class="middle-play-pause">
+          <svg
+            #middlePlay
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM176 168V344C176 352.7 180.7 360.7 188.3 364.9C195.8 369.2 205.1 369 212.5 364.5L356.5 276.5C363.6 272.1 368 264.4 368 256C368 247.6 363.6 239.9 356.5 235.5L212.5 147.5C205.1 142.1 195.8 142.8 188.3 147.1C180.7 151.3 176 159.3 176 168V168z"
+            />
+          </svg>
+          <svg
+            #middlePause
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM224 191.1v128C224 337.7 209.7 352 192 352S160 337.7 160 320V191.1C160 174.3 174.3 160 191.1 160S224 174.3 224 191.1zM352 191.1v128C352 337.7 337.7 352 320 352S288 337.7 288 320V191.1C288 174.3 302.3 160 319.1 160S352 174.3 352 191.1z"
+            />
+          </svg>
+        </div>
+        <div class="right-seek center">
+          <svg
+            #rightSeek
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M246.6 233.4l-160-160c-12.5-12.5-32.75-12.5-45.25 0s-12.5 32.75 0 45.25L178.8 256l-137.4 137.4c-12.5 12.5-12.5 32.75 0 45.25C47.63 444.9 55.81 448 64 448s16.38-3.125 22.62-9.375l160-160C259.1 266.1 259.1 245.9 246.6 233.4zM438.6 233.4l-160-160c-12.5-12.5-32.75-12.5-45.25 0s-12.5 32.75 0 45.25L370.8 256l-137.4 137.4c-12.5 12.5-12.5 32.75 0 45.25C239.6 444.9 247.8 448 256 448s16.38-3.125 22.62-9.375l160-160C451.1 266.1 451.1 245.9 438.6 233.4z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="bottom-control-progress center">
+        <div class="bottom-bg"></div>
+        <div class="progress-bar center">
+          <input
+            tabindex="-1"
+            type="range"
+            min="0"
+            max="100"
+            [value]="currentProgress"
+            (input)="seekTo($event)"
+          />
+        </div>
+        <div class="bottom-control center">
+          <div class="center">
+            <div class="play-pause center" (click)="tooglePlayPause()">
+              <svg
+                *ngIf="!isPlaying.getValue()"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512"
+              >
+                <path
+                  d="M361 215C375.3 223.8 384 239.3 384 256C384 272.7 375.3 288.2 361 296.1L73.03 472.1C58.21 482 39.66 482.4 24.52 473.9C9.377 465.4 0 449.4 0 432V80C0 62.64 9.377 46.63 24.52 38.13C39.66 29.64 58.21 29.99 73.03 39.04L361 215z"
+                />
+              </svg>
+              <svg
+                *ngIf="isPlaying.getValue()"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"
+              >
+                <path
+                  d="M272 63.1l-32 0c-26.51 0-48 21.49-48 47.1v288c0 26.51 21.49 48 48 48L272 448c26.51 0 48-21.49 48-48v-288C320 85.49 298.5 63.1 272 63.1zM80 63.1l-32 0c-26.51 0-48 21.49-48 48v288C0 426.5 21.49 448 48 448l32 0c26.51 0 48-21.49 48-48v-288C128 85.49 106.5 63.1 80 63.1z"
+                />
+              </svg>
+            </div>
+            <div class="timer center">
+              {{ currentDuration | hhmmss }}
+              /
+              {{ totalDuration | hhmmss }}
+            </div>
+            <div class="volume-control center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path
+                  d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"
+                />
+              </svg>
+              <div class="center">
+                <input
+                  min="1"
+                  max="10"
+                  type="range"
+                  [ngStyle]="{
+                    'background-image':
+                      'linear-gradient(to right, #eee 0%, #eee ' +
+                      currentVolume * 100 +
+                      '%, #333 ,' +
+                      currentVolume * 100 +
+                      '%, #333 100%)'
+                  }"
+                  [value]="currentVolume * 10"
+                  (input)="setVolume($event)"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="speed-volume-screen-control center">
+            <div class="speed-control center">
+              {{ currentPlaybackRate + "x" }}
+              <div class="controller">
+                <div (click)="setPlaybackRate(0.25)">0.25</div>
+                <div (click)="setPlaybackRate(0.5)">0.5</div>
+                <div (click)="setPlaybackRate(0.75)">0.75</div>
+                <div (click)="setPlaybackRate(1)">1</div>
+                <div (click)="setPlaybackRate(1.25)">1.25</div>
+                <div (click)="setPlaybackRate(1.5)">1.5</div>
+                <div (click)="setPlaybackRate(1.75)">1.75</div>
+                <div (click)="setPlaybackRate(2)">2</div>
+              </div>
+            </div>
+
+            <div class="screen-control center" (click)="toogleFullScreen()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loader center" *ngIf="isLoading">
+      <svg>
+        <circle cx="50" cy="50" r="28"></circle>
+      </svg>
+    </div>
+  </div>
+</div>
