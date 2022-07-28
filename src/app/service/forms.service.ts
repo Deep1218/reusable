@@ -77,10 +77,11 @@ export class FormsService {
   public createSignUpForm(
     firstName: boolean = true,
     lastName: boolean = true,
+    username: boolean = true,
     email: boolean = true,
     confirmPassword: boolean = true,
     profilePic: boolean = true,
-    recaptcha: boolean = false
+    recaptcha: boolean = true
   ): FormGroup {
     // firstName
     if (firstName) {
@@ -100,6 +101,13 @@ export class FormsService {
         Validators.required,
         Validators.pattern('^[A-za-z]*$'),
       ]);
+    }
+
+    // username
+    if (username) {
+      let usernameCtrl = new FormControl();
+      this.form.addControl('username', usernameCtrl);
+      usernameCtrl.setValidators([Validators.required]);
     }
 
     // email

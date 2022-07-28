@@ -17,6 +17,12 @@
                 id="floatingInput"
                 placeholder="firstName"
                 formControlName="firstName"
+                [ngClass]="{
+                  'is-valid': signupForm.get('firstName')?.valid,
+                  'is-invalid':
+                    !signupForm.get('firstName')?.valid &&
+                    signupForm.get('firstName')?.touched
+                }"
               />
               <label for="floatingInput">First Name</label>
             </div>
@@ -29,6 +35,12 @@
                 id="floatingInput"
                 placeholder="lastName"
                 formControlName="lastName"
+                [ngClass]="{
+                  'is-valid': signupForm.get('lastName')?.valid,
+                  'is-invalid':
+                    !signupForm.get('lastName')?.valid &&
+                    signupForm.get('lastName')?.touched
+                }"
               />
               <label for="floatingInput">Last Name</label>
             </div>
@@ -41,6 +53,12 @@
             id="floatingInput"
             placeholder="username"
             formControlName="username"
+            [ngClass]="{
+              'is-valid': signupForm.get('username')?.valid,
+              'is-invalid':
+                !signupForm.get('username')?.valid &&
+                signupForm.get('username')?.touched
+            }"
           />
           <label for="floatingInput">Username</label>
         </div>
@@ -51,9 +69,16 @@
             id="floatingInput"
             placeholder="email"
             formControlName="email"
+            [ngClass]="{
+              'is-valid': signupForm.get('email')?.valid,
+              'is-invalid':
+                !signupForm.get('email')?.valid &&
+                signupForm.get('email')?.touched
+            }"
           />
           <label for="floatingInput">Email</label>
         </div>
+
         <div class="row gx-1 mb-3">
           <div class="col-6">
             <div class="form-floating mb-2">
@@ -63,6 +88,12 @@
                 id="floatingPassword"
                 placeholder="Password"
                 formControlName="password"
+                [ngClass]="{
+                  'is-valid': signupForm.get('password')?.valid,
+                  'is-invalid':
+                    !signupForm.get('password')?.valid &&
+                    signupForm.get('password')?.touched
+                }"
               />
               <label for="floatingPassword">Password</label>
             </div>
@@ -75,13 +106,44 @@
                 id="floatingPassword"
                 placeholder="confirmPassword"
                 formControlName="confirmPassword"
+                [ngClass]="{
+                  'is-valid': signupForm.get('confirmPassword')?.valid,
+                  'is-invalid':
+                    !signupForm.get('confirmPassword')?.valid &&
+                    signupForm.get('confirmPassword')?.touched
+                }"
               />
               <label for="floatingPassword">Confirm Password</label>
             </div>
           </div>
+          <div
+            class="form-floating mb-2"
+            *ngIf="signupForm.contains('recaptcha')"
+          >
+            <ngx-recaptcha2
+              #captchaElem
+              [siteKey]="'6Le2VwEhAAAAALrob9hjQt8fpgHO8x1LRiI25JeH'"
+              (reset)="handleReset()"
+              (expire)="handleExpire()"
+              (load)="handleLoad()"
+              (success)="handleSuccess($event)"
+              [useGlobalDomain]="false"
+              [size]="'normal'"
+              [hl]="'en'"
+              [theme]="'light'"
+              [type]="'image'"
+              formControlName="recaptcha"
+            >
+            </ngx-recaptcha2>
+          </div>
         </div>
         <div class="d-grid gap-2 mb-3">
-          <button class="btn btn-primary fw-bold">Sign up</button>
+          <button
+            class="btn btn-primary fw-bold"
+            [disabled]="!signupForm.valid"
+          >
+            Sign up
+          </button>
         </div>
       </form>
     </div>
