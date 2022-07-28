@@ -6,6 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 
+enum fieldOption {
+  EMAIL,
+  USERNAME,
+  PHONENUMBER,
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -30,9 +35,9 @@ export class FormsService {
     });
   }
 
-  public createForm(option?: string, recaptcha: boolean = false): FormGroup {
-    switch (option) {
-      case 'email':
+  public createForm(field: fieldOption, recaptcha: boolean = false): FormGroup {
+    switch (field) {
+      case fieldOption.EMAIL:
         let emailCtrl = new FormControl();
         this.form.addControl('email', emailCtrl);
         emailCtrl.setValidators([
@@ -42,15 +47,29 @@ export class FormsService {
           ),
         ]);
         break;
-      case 'username':
+      case fieldOption.USERNAME:
         let usernameCtrl = new FormControl();
         this.form.addControl('username', usernameCtrl);
-        usernameCtrl.setValidators([Validators.required]);
+        // Regex for Username :-
+        // The first character is a letter
+        // The input contains only alphanumeric characters and it can contain '_'
+        // The input is 6-32 characters long
+        usernameCtrl.setValidators([
+          Validators.required,
+          Validators.pattern('[a-zA-Z][a-zA-Z0-9.\\-_]{5,31}'),
+        ]);
         break;
-      case 'phoneNumber':
+      case fieldOption.PHONENUMBER:
         let phoneNumberCtrl = new FormControl();
         this.form.addControl('phoneNumber', phoneNumberCtrl);
-        phoneNumberCtrl.setValidators([Validators.required]);
+        // Regex for Phone Number :-
+        // 11-12 digit phone numbers with optional group characters and + char at the begining
+        phoneNumberCtrl.setValidators([
+          Validators.required,
+          Validators.pattern(
+            '(\\+?( |-|\\.)?[0-9]{1,2}( |-|\\.)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|\\.)?([0-9]{3}( |-|\\.)?[0-9]{4})'
+          ),
+        ]);
         break;
     }
 

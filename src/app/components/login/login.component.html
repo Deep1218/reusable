@@ -10,7 +10,7 @@
     </div>
     <div class="col-12">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()" class="my-3">
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3" *ngIf="loginForm.contains('email')">
           <input
             type="email"
             class="form-control"
@@ -25,6 +25,41 @@
             }"
           />
           <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating mb-3" *ngIf="loginForm.contains('username')">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Username"
+            formControlName="username"
+            [ngClass]="{
+              'is-valid': loginForm.get('username')?.valid,
+              'is-invalid':
+                !loginForm.get('username')?.valid &&
+                loginForm.get('username')?.touched
+            }"
+          />
+          <label for="floatingInput">Username</label>
+        </div>
+        <div
+          class="form-floating mb-3"
+          *ngIf="loginForm.contains('phoneNumber')"
+        >
+          <input
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="PhoneNumber"
+            formControlName="phoneNumber"
+            [ngClass]="{
+              'is-valid': loginForm.get('phoneNumber')?.valid,
+              'is-invalid':
+                !loginForm.get('phoneNumber')?.valid &&
+                loginForm.get('phoneNumber')?.touched
+            }"
+          />
+          <label for="floatingInput">Phone Number</label>
         </div>
         <div class="form-floating mb-3">
           <input
@@ -45,7 +80,9 @@
         <div
           class="form-floating mb-3"
           *ngIf="
-            loginForm.get('email')?.valid &&
+            (loginForm.get('email')?.valid ||
+              loginForm.get('username')?.valid ||
+              loginForm.get('phoneNumber')?.valid) &&
             loginForm.get('password')?.valid &&
             loginForm.contains('recaptcha')
           "

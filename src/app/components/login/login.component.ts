@@ -13,13 +13,13 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(private formService: FormsService) {
-    this.loginForm = this.formService.createForm('email');
+    this.loginForm = this.formService.createForm(2);
   }
 
   ngOnInit(): void {}
 
   onSubmitLogin() {
-    console.log('Form submitted');
+    console.log('Form submitted', this.loginForm.value);
   }
 
   // Below methods are used only for recaptcha
