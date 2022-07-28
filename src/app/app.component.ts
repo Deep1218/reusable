@@ -7,9 +7,9 @@ import { ImportFromCsvService } from './import-from-csv/service/import-from-csv.
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Reusable';
+  title = 'reusable';
   importedDataEvent:any
-  importedData:any
+  importedData:any[] = []
 
   constructor(private importFromCsvService:ImportFromCsvService){}
 

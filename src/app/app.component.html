@@ -3,4 +3,4 @@
 <div *ngIf="importedDataEvent">
 <app-import-from-csv [importedDataEvent]="importedDataEvent"></app-import-from-csv>
 </div>
-<button *ngIf="importedDataEvent" class="btn btn-success" (click)="onUpload()">Upload</button>
+<button *ngIf="importedDataEvent" class="btn btn-success" id="upload" (click)="onUpload()">Upload</button>

@@ -7,7 +7,7 @@ import { ImportFromCsvService } from './service/import-from-csv.service';
   templateUrl: './import-from-csv.component.html',
   styleUrls: ['./import-from-csv.component.css'],
 })
-export class ImportFromCsvComponent implements OnInit {
+export class ImportFromCsvComponent implements OnInit{
 
   @Input('importedDataEvent') importedDataEvent:any
   propertyNames: any[] = [];
@@ -50,9 +50,9 @@ export class ImportFromCsvComponent implements OnInit {
     }
   }
 
-  onSave(i: any) {
+  onSave(i: any) { 
     this.importedData[i].edit = false;
-    this.importFromCsvSevice.importedData.next(this.importedData)
+    this.importFromCsvSevice.importedData.next(this.importedData)  
   }
 
   onEdit(i: any) {

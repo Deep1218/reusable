@@ -8,5 +8,5 @@ export class ImportFromCsvService {
 
   constructor() { }
   
-  importedData = new BehaviorSubject(null)
+  importedData:any = new BehaviorSubject(null)
 }

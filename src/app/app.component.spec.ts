@@ -1,35 +1,73 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { ImportFromCsvComponent } from './import-from-csv/import-from-csv.component';
+import { ImportFromCsvService } from './import-from-csv/service/import-from-csv.service';
 
 describe('AppComponent', () => {
+  let app: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let importFromCsvSevice :ImportFromCsvService
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        ImportFromCsvComponent
       ],
     }).compileComponents();
+   fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance
+    const mockFile = new File([''], 'filename.csv', { type: 'text/csv' });
+    var mockEvt = { target: { files: [mockFile] } };
+
+    app.importedDataEvent = mockEvt
+    fixture.detectChanges()
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'reusable'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app.title).toEqual('reusable');
   });
+  
+  it('importedDataEvent function should have been called', fakeAsync(()=>{
+    const mockFile = new File([''], 'filename.csv', { type: 'text/csv' });
+    var mockEvt = { target: { files: [mockFile] } };
+    app.handleImportedData(mockEvt)
+    tick(100)
+    fixture.detectChanges()
+    expect(app.importedDataEvent).toEqual(mockEvt)
+  }))
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('reusable app is running!');
-  });
+  it('click on Upload Btn', () => {
+   
+    let obj = [
+      {
+        edit:true,
+        id:1,
+        name:"ABC"
+      },
+      {
+        edit:false,
+        id:2,
+        name:"XYZ"
+      },
+      {
+        edit:false,
+        id:3,
+        name:"PQR"
+      }
+    ]
+    app.importedData = obj
+    importFromCsvSevice = TestBed.inject(ImportFromCsvService)
+    importFromCsvSevice.importedData.next(obj)
+    let onUploadBtn = fixture.nativeElement.querySelector("#upload")
+    onUploadBtn.click()
+    expect(app.importedData).toEqual(importFromCsvSevice.importedData.value)
+  })
 });
