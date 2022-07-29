@@ -15,7 +15,7 @@ This project is about Importing Data from the csv/xlsx/xls Files
 1. Copy import-from-csv [folder](https://github.com/Deep1218/reusable/tree/importFromCsv/src/app) to your project
 2. Add `ImportFromCsvComponent` to your module
 3. Use `ImportFromCsvService` in your component
-4. See [documentation](https://github.com/Deep1218/reusable/tree/otp-ui#documentation) for more details
+4. See [documentation](https://github.com/Deep1218/reusable/tree/importFromCsv#documentation) for more details
 
 ## Running Development server
 
