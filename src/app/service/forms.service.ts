@@ -38,7 +38,7 @@ export class FormsService {
   public createForm(field: fieldOption, recaptcha: boolean = false): FormGroup {
     switch (field) {
       case fieldOption.EMAIL:
-        let emailCtrl = new FormControl();
+        let emailCtrl = new FormControl('');
         this.form.addControl('email', emailCtrl);
         emailCtrl.setValidators([
           Validators.required,
@@ -48,7 +48,7 @@ export class FormsService {
         ]);
         break;
       case fieldOption.USERNAME:
-        let usernameCtrl = new FormControl();
+        let usernameCtrl = new FormControl('');
         this.form.addControl('username', usernameCtrl);
         // Regex for Username :-
         // The first character is a letter
@@ -60,7 +60,7 @@ export class FormsService {
         ]);
         break;
       case fieldOption.PHONENUMBER:
-        let phoneNumberCtrl = new FormControl();
+        let phoneNumberCtrl = new FormControl('');
         this.form.addControl('phoneNumber', phoneNumberCtrl);
         // Regex for Phone Number :-
         // 11-12 digit phone numbers with optional group characters and + char at the begining
@@ -75,7 +75,7 @@ export class FormsService {
 
     // recaptcha
     if (recaptcha) {
-      let recaptchaCtrl = new FormControl();
+      let recaptchaCtrl = new FormControl('');
       this.form.addControl('recaptcha', recaptchaCtrl);
       recaptchaCtrl.setValidators([Validators.required]);
     }
