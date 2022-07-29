@@ -19,14 +19,15 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.videoService.load(this.src);
   }
-  selectFile(e: any) {
+  selectFile(e: any): boolean {
     let file = e.target.files[0];
 
     if (!file || !file.type.startsWith('video')) {
       console.log('invalid file');
-      return;
+      return false;
     }
     this.videoService.load(file);
+    return true;
   }
 
   loadUrl() {

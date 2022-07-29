@@ -39,10 +39,14 @@ export class VideoPlayerComponent implements AfterViewInit {
   constructor(private videoService: VideoPlayerService) {}
 
   ngAfterViewInit(): void {
+    console.log('log');
     this.videoService.src.subscribe((data: srcData) => {
+      if (!data?.type || !data.src) return;
       if (data.type == 'path') {
+        console.log('ino se', data);
         this.videoElement.nativeElement.src = data.src as string;
       } else {
+        console.log('in errrr', data.src);
         this.videoElement.nativeElement.src = window.URL.createObjectURL(
           data.src as File
         );
@@ -69,22 +73,21 @@ export class VideoPlayerComponent implements AfterViewInit {
     this.totalDuration = this.videoElement.nativeElement.duration;
   }
 
-  play() {
-    // interval will run every 100th of part of full duration or 1 sec
-    this.progressInterval = setInterval(() => {
-      this.updateProgress();
-    }, Math.min(this.totalDuration * 10, 1000));
-
-    this.isPlaying.next(true);
-    console.log('intervl', this.isPlaying);
-    this.videoElement.nativeElement.play();
-  }
   updateProgress() {
     this.currentDuration = Math.round(
       this.videoElement.nativeElement.currentTime
     );
     this.currentProgress =
       (this.videoElement.nativeElement.currentTime * 100) / this.totalDuration;
+  }
+  play() {
+    // interval will run every 100th of part of full duration or 1 sec
+    this.progressInterval = setInterval(() => {
+      this.updateProgress();
+    }, Math.min(this.totalDuration * 10, 1000));
+    console.log('yup');
+    this.isPlaying.next(true);
+    this.videoElement.nativeElement.play();
   }
 
   pause() {
@@ -143,14 +146,6 @@ export class VideoPlayerComponent implements AfterViewInit {
       (perc / 100) * this.totalDuration;
   }
 
-  seek10Sec(e: any) {
-    let totalX = e.target.clientWidth;
-    if (e.offsetX > totalX / 2) {
-      this.seekForward();
-    } else {
-      this.seekBackward();
-    }
-  }
   seekForward() {
     this.showAnimation('seekRight');
     this.videoElement.nativeElement.currentTime =
