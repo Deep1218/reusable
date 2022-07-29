@@ -1,20 +1,20 @@
 <div *ngIf="importedData" style="max-height: 60vh; overflow:auto">
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered" aria-label="Imported Data">
     <thead>
         <tr>
-            <th>Update</th>
-            <th *ngFor="let propertyName of propertyNames">{{propertyName}} </th>
+            <th id="tableHeading" >Update</th>
+            <th id="tableHeading" *ngFor="let propertyName of propertyNames">{{propertyName}} </th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of importedData; let i =index">
-            <th *ngIf="data.edit==false">
+            <th id="tableColumn" *ngIf="data.edit==false">
                 <button (click)="onEdit(i)">Edit</button>
             </th>
-            <th *ngIf="data.edit">
+            <th id="tableColumn" *ngIf="data.edit">
                 <button (click)="onSave(i)">Save</button>
             </th>
-            <th *ngFor="let propertyName of propertyNames" className="{{i}}">
+            <th id="tableColumn" *ngFor="let propertyName of propertyNames" className="{{i}}">
                 <input *ngIf="data.edit" type="text" [(ngModel)]="data[propertyName]">
                 <span *ngIf="!data.edit"> {{data[propertyName]}}</span>
             </th>

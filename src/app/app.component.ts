@@ -19,14 +19,11 @@ export class AppComponent {
       this.importedDataEvent = event
     }, 100);
   }
-
-
+  
   onUpload(){
     this.importedData = this.importFromCsvService.importedData.value
     if(this.importedData){
-
       console.log(this.importedData);
-  
       // call your api here to pass the data in the backend
       alert("Data Uploaded Successfully!!")
     }

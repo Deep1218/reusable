@@ -21,7 +21,7 @@ describe('AppComponent', () => {
    fixture = TestBed.createComponent(AppComponent);
     app = fixture.componentInstance
     const mockFile = new File([''], 'filename.csv', { type: 'text/csv' });
-    var mockEvt = { target: { files: [mockFile] } };
+    const mockEvt = { target: { files: [mockFile] } };
 
     app.importedDataEvent = mockEvt
     fixture.detectChanges()
@@ -37,7 +37,7 @@ describe('AppComponent', () => {
   
   it('importedDataEvent function should have been called', fakeAsync(()=>{
     const mockFile = new File([''], 'filename.csv', { type: 'text/csv' });
-    var mockEvt = { target: { files: [mockFile] } };
+    const mockEvt = { target: { files: [mockFile] } };
     app.handleImportedData(mockEvt)
     tick(100)
     fixture.detectChanges()

@@ -5,8 +5,5 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ImportFromCsvService {
-
-  constructor() { }
-  
   importedData:any = new BehaviorSubject(null)
 }
