@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 
 @Injectable({
@@ -17,7 +16,15 @@ export class ExportService {
       type: 'array',
     });
     const data: Blob = new Blob([excelBuffer], { type: fileType });
-    FileSaver.saveAs(data, fileName + fileExtension);
+    let url:string = window.URL.createObjectURL(data);
+    let a:HTMLAnchorElement = document.createElement('a')
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = url;
+        a.download = fileName + fileExtension;
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove();
   }
   
   exportToCsv(jsonData: any[], fileName:string) {
@@ -26,7 +33,15 @@ export class ExportService {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(jsonData);
     const csvOutput: string = XLSX.utils.sheet_to_csv(worksheet);
     const data: Blob = new Blob([csvOutput], { type: fileType });
-    FileSaver.saveAs(data, fileName + fileExtension);
+    let url:string = window.URL.createObjectURL(data);
+    let a:HTMLAnchorElement = document.createElement('a')
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = url;
+        a.download = fileName + fileExtension;
+        a.click();
+        window.URL.revokeObjectURL(url);
+        a.remove();
   }
  }
 

@@ -6,9 +6,8 @@ This project is about Exporting Data to csv/xlsx Files
 
 1. Angular CLI v13.0.0
 2. Node.js v16.16.0
-3. Project uses  
-    1. [xlsx](https://www.npmjs.com/package/xlsx) v0.18.5, To add xlsx : <br /> `npm install xlsx`
-    2. [file-saver](https://www.npmjs.com/package/file-saver) v2.0.5, To add file-saver : <br /> `npm i file-saver`
+3. Project uses [xlsx](https://www.npmjs.com/package/xlsx) v0.18.5, To add xlsx : <br /> `npm install xlsx`
+    
 
 ## Adding Component to your project
 
