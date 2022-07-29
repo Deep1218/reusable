@@ -7,6 +7,6 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [Otp],
   imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild([])],
-  exports: [],
+  exports: [Otp],
 })
 export class OtpModule {}

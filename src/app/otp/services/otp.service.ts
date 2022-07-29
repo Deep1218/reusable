@@ -9,18 +9,12 @@ import {
 import { Subject } from 'rxjs';
 import { Otp } from '../components/otp/otp.component';
 
-interface Config {
-  formTitle: string;
-  formMessage: string;
-  otpLength: number;
-}
-
 @Injectable({
   providedIn: 'root',
 })
 export class OtpService {
-  private componentRef!: ComponentRef<Otp>;
-  private config: Subject<Config> = new Subject();
+  componentRef!: ComponentRef<Otp> | null;
+  // config: BehaviorSubject<Config> = new BehaviorSubject({} as Config);
 
   onVerify = new Subject<number>();
 
@@ -31,8 +25,11 @@ export class OtpService {
   ) {}
 
   hide() {
-    this.applicationRef.detachView(this.componentRef.hostView);
-    this.componentRef.destroy();
+    this.applicationRef.detachView(
+      (this.componentRef as ComponentRef<Otp>).hostView
+    );
+    (this.componentRef as ComponentRef<Otp>).destroy();
+    this.componentRef = null;
   }
 
   show({
@@ -40,8 +37,9 @@ export class OtpService {
     formMessage = 'Please enter the OTP that we have sent you.',
     otpLength = 4,
   }) {
-    this.config.next({ formTitle, formMessage, otpLength });
-    console.log(formTitle);
+    if (this.componentRef) {
+      this.hide();
+    }
     this.componentRef = this.componentFactoryResolver
       .resolveComponentFactory(Otp)
       .create(this.injector);

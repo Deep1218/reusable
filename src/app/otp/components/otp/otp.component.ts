@@ -5,7 +5,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'otp-component',
@@ -14,9 +13,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class Otp implements OnInit {
   // configuration
-  @Input('otpLength') otpLength!: number;
-  @Input('formTitle') formTitle!: string;
-  @Input('formMessage') formMessage!: string;
+  @Input('otpLength') otpLength = 4;
+  @Input('formTitle') formTitle = 'OTP Verification';
+  @Input('formMessage') formMessage =
+    'Please enter the OTP that we have sent you.';
 
   @Output() onVerify = new EventEmitter<number>();
 
@@ -45,7 +45,7 @@ export class Otp implements OnInit {
   // EVENT FIRED WHEN: User types into any of the otp inputs
   onInput(e: any) {
     let key = e.key;
-    let current = this.otpForm.get(e.target.id);
+    let current = this.otpForm.get(e.target.id.slice(-1));
     let next = e.target.nextElementSibling;
     let prev = e.target.previousElementSibling;
     if (key == 'Backspace') {

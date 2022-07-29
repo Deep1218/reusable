@@ -12,6 +12,12 @@ export class AppComponent {
       console.log('final otp is', otp);
     });
   }
+
+  showComponentUsingTemplate = false;
+  showUsingTemplate() {
+    this.showComponentUsingTemplate = true;
+  }
+
   show() {
     this.otpService.show({
       formMessage: 'this is form message',

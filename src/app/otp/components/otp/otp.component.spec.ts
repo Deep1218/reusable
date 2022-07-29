@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { Otp } from './otp.component';
@@ -17,30 +17,55 @@ describe('Otp', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(Otp);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Should call prevent default', async () => {
+  it('Should input otp and verify', fakeAsync(() => {
     component.otpLength = 4;
     component.formTitle = 'hello';
     component.formMessage = 'this is description.';
-
     fixture.detectChanges();
 
-    const keyEvent = new KeyboardEvent('keyup', { code: 'Digit2' });
-    let inp1 = fixture.debugElement.nativeElement.querySelector('#inp1');
+    let verifySpy = spyOn(component, 'verify').and.callThrough();
+    let inp1 = fixture.nativeElement.querySelector('#inp1');
+    inp1.focus();
 
-    expect(inp1).toBeTruthy();
+    let keys = ['1', '3', 'Backspace', '2', '3', 'f', '4'];
+    for (let key of keys) {
+      let keyEvent = new KeyboardEvent('keyup', { key });
+      inp1.ownerDocument.activeElement.dispatchEvent(keyEvent);
+    }
 
-    // inp1.dispatchEvent(keyEvent);
-    // fixture.detectChanges();
+    expect(verifySpy).toHaveBeenCalledTimes(1);
+    let otp = Object.values(component.otpForm.value).join('');
+    expect(otp).toBe('1234');
+  }));
 
-    // const spy = spyOn(keyEvent, 'preventDefault');
-    // fixture.detectChanges();
-    // expect(spy).toHaveBeenCalled();
+  it('focus all input when otp not entered', () => {
+    component.otpLength = 4;
+    component.formTitle = 'hello';
+    component.formMessage = 'this is description.';
+    fixture.detectChanges();
+
+    let verifyBtn = fixture.nativeElement.querySelector(
+      "button[type='submit']"
+    );
+    verifyBtn.click();
+    expect(component.otpForm.invalid).toBe(true);
+  });
+
+  it('set error if submited invalid otp', () => {
+    component.otpLength = 4;
+    component.formTitle = 'hello';
+    component.formMessage = 'this is description.';
+    fixture.detectChanges();
+
+    expect(component.otpForm.get('1')?.errors?.['invalid']).toBe(undefined);
+    component.invalidOTP();
+    fixture.detectChanges();
+    expect(component.otpForm.get('1')?.errors?.['invalid']).toBe(true);
   });
 });
