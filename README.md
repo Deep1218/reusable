@@ -1,27 +1,58 @@
-# Reusable
+# Export To csv/xlsx File
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+This project is about Exporting Data to csv/xlsx Files 
 
-## Development server
+## Project Prerequisite
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Angular CLI v13.0.0
+2. Node.js v16.16.0
+3. Project uses  
+    1. [xlsx](https://www.npmjs.com/package/xlsx) v0.18.5, To add xlsx : <br /> `npm install xlsx`
+    2. [file-saver](https://www.npmjs.com/package/file-saver) v2.0.5, To add file-saver : <br /> `npm i file-saver`
 
-## Code scaffolding
+## Adding Component to your project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Copy `Service` [folder](https://github.com/Deep1218/reusable/tree/exportToCsv/src/app/service) to your project
+2. Use `ExportService` in your component
+3. See [documentation](https://github.com/Deep1218/reusable/tree/exportToCsv#documentation) for more details
 
-## Build
+## Running Development server
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. `npm i` in root directory
+2. `ng serve` for dev server (`http://localhost:4200/`)
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Documentation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+See [export-to-csv Component](https://github.com/Deep1218/reusable/blob/exportToCsv/src/app/export-to-csv) for example.
 
-## Further help
+### In ts file of your Component
+&nbsp;&nbsp; Copy this Code.. 
+```
+// In constructor Call the Service
+constructor(private exportService:ExportService) {}
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+// Functions
+
+ exportToExcel(jsonData: any[], fileName: string) {
+    this.exportService.exportToExcel(jsonData,fileName)
+  }
+  
+  exportToCsv(jsonData: any[], fileName:string) {
+   this.exportService.exportToCsv(jsonData, fileName)
+  }
+```
+&nbsp;&nbsp; Here, when the Function will called then the service function of that function will be called. And code is in the Service file.
+
+### In HTML file of your Component
+
+&nbsp;&nbsp; Copy this Code.. 
+```
+<button id="exportToExcel" (click)="exportToExcel(data,'Report')" >export to excel</button>
+<button id="exportToCsv" (click)="exportToCsv(data,'Report')" >export to csv</button>
+
+```
+&nbsp;&nbsp; Here, onClick on `export to excel` button this `exportToExcel(data,'Report')` function will be called and here @Param1 : `data` is JSON data to be Exported and @Param2 : `Report` is the File Name of the file.

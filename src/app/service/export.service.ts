@@ -2,13 +2,10 @@ import { Injectable } from '@angular/core';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class ExportService {
-
-  constructor() { }
 
   exportToExcel(jsonData: any[], fileName: string) {
     const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';

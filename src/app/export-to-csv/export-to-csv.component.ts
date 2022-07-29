@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ExportService } from '../export.service';
+import { Component} from '@angular/core';
+import { ExportService } from '../service/export.service';
 
 @Component({
   selector: 'app-export-to-csv',
@@ -7,11 +7,9 @@ import { ExportService } from '../export.service';
   styleUrls: ['./export-to-csv.component.css'],
 })
 
-export class ExportToCsvComponent implements OnInit {
+export class ExportToCsvComponent{
 
   constructor(private exportService:ExportService) {}
-
-  ngOnInit(): void {}
 
   propertyNames: any = ['id', 'firstName', 'lastName', 'email'];
   data: any[] = [
@@ -54,8 +52,6 @@ export class ExportToCsvComponent implements OnInit {
   ];
 
   exportToExcel(jsonData: any[], fileName: string) {
-    console.log("hii");
-    
     this.exportService.exportToExcel(jsonData,fileName)
   }
   
