@@ -18,8 +18,6 @@ export class LoginComponent {
   }
 
   onSubmitLogin() {
-    console.log('Working');
-
     this.formData = this.loginForm.value;
   }
 
