@@ -1,27 +1,39 @@
-# Reusable
+# ImageUpload File
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+This project is about Upload Image
 
-## Development server
+# Project Prerequisite
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Angular CLI v13.0.0
+2. Node.js v16.16.0
 
-## Code scaffolding
+# Adding Component to your project
+1. Copy App module [folder](https://github.com/Deep1218/reusable/tree/ImageUpload/src/app) to your project
+2. Add app module to your module
+3. Use Service in your compoent
+4. See [documentation]() for more details
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Running Development server
 
-## Build
+1. `npm i` in root directory
+2. `ng serve` for dev server (`http://localhost:4000/image/addImage`)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+# Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Run `ng test` to execute the unit tests via [Karma]
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Documentation
 
-## Further help
+    See [appComponent]for example.  
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Requirement Description
+
+
+    The application will One and multiple image types accept.
+
+
+
+
+

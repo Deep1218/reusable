@@ -1,5 +1,4 @@
 <h1>Image Upload</h1>
-
 <label class="image-upload-container btn btn-bwm"> Select Image:</label>
 <input
   #imageInput
@@ -8,21 +7,9 @@
   multiple
   (change)="processFile(imageInput)"
 />
-<button type="button" (click)="onUpload()">Upload</button>
-<div *ngIf="selectedFile" class="img-preview-container">
-  <div processFile
-    class="img-preview{{ selectedFile.status === 'fail' ? '-error' : '' }}"
-    [ngStyle]="{ 'background-image': 'url(' + selectedFile.src + ')' }"
-  ></div>
-  <div *ngIf="selectedFile.pending" Class="img-loading-overlay">
-    <div class="img-spinning-circle"></div>
-  </div>
-  <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success">
-    Image Uploaded Succesfuly>
-  </div>
-  <div *ngIf="selectedFile.status === 'faill'" class="alert alert-danger">
-    Image Uploade Failed!
-  </div>
+<!-- <button type="button" (click)="onUpload()">Upload</button> -->
+<button (click)="onUpload()" type="button" class="btn btn-primary mt-3">Upload</button>
 
- 
-</div>
+
+
+

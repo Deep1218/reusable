@@ -12,30 +12,29 @@ class ImageSnippet {
 })
 export class AppComponent {
   selectedFile!: ImageSnippet;
+  file: File | undefined;
   constructor(private imageService: ImageService) {}
 
   title = 'reusable';
-  private onSuccess() {
-    this.selectedFile.pending = false;
-    this.selectedFile.status = 'ok';
-  }
-
-  private onError() {
-    this.selectedFile.pending = false;
-    this.selectedFile.status = 'fail';
-    this.selectedFile.src = '';
-  }
+  
 
   processFile(imageInput: any) {
-    console.log('Working', imageInput.files[0]);
+    // console.log('Working', imageInput.files[0]);
 
     const reader = new FileReader();
     const file: File = imageInput.files[0];
     reader.addEventListener('load', (event: any) => {
       this.selectedFile = new ImageSnippet(event.target.result, file);
-      this.imageService.uploadImage(this.selectedFile.file);
-    });
+    })
     reader.readAsDataURL(file);
   }
-  onUpload() {}
+  onUpload() {
+    if(this.selectedFile.file)
+    this.imageService.uploadImage(this.selectedFile.file).subscribe((resp:any) => {
+      alert("Uploaded")
+    })
+  else{
+    alert("Please select a Image first")
+  }
+}
 }
