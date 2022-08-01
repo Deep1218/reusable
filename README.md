@@ -8,7 +8,7 @@ This project is about Upload File
 2. Node.js v16.16.0
 
 # Adding Component to your project
-1. Copy OTP module [folder](https://github.com/Deep1218/reusable/tree/file-upload/src/app) to your project
+1. Copy App module [folder](https://github.com/Deep1218/reusable/tree/file-upload/src/app) to your project
 2. Add file upload to your module
 3. Use Service in your compoent
 4. See [documentation]() for more details
