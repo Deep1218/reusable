@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { srcData } from '../models/srcData';
+import { SrcData } from '../models/srcData';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VideoPlayerService {
-  src: BehaviorSubject<srcData> = new BehaviorSubject({} as srcData);
-  constructor() {}
+  src: BehaviorSubject<SrcData> = new BehaviorSubject({} as SrcData);
 
   load(file: string | File) {
     console.log('file not not', file);

@@ -1,27 +1,64 @@
-# Reusable
+# Video Player
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+This project is about Video player
+You can change speed, seek 10 second, view in fullscreen,etc.
+It can be integreted using service or by adding component to your template.
 
-## Development server
+## Project Prerequisite
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Angular CLI v13.0.0
+2. Node.js v16.16.0
 
-## Code scaffolding
+## Running Development server
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. `npm i` in root directory
+2. `ng serve` for dev server (`http://localhost:4200/`)
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Adding Component to your project
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Copy Video Player module [folder](https://github.com/Deep1218/reusable/tree/video-player/src/app) to your project
+- Add VideoPlayerModule to your module
 
-## Further help
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+@NgModule({
+  ...
+  imports: [
+    ...
+    VideoPlayerModule,
+    ...
+  ],
+  ...
+})
+```
+
+- Add VideoPlayerComponent to your template
+
+```
+...
+<video-player [src]="src"></video-player>
+...
+```
+
+- Use VideoPlayerService to load video dynamically.
+
+```
+import { VideoPlayerService } from './video-player/services/video-player.service';
+...
+constructor(private videoService: VideoPlayerService) {}
+
+this.videoService.load(YOUR_VIDEO_FILE_URL');
+```
+
+- Or pass local video file as a parameter
+
+```
+onSelectFile(e: any){
+  let file = e.target.files[0];
+  this.videoService.load(file);
+}
+```

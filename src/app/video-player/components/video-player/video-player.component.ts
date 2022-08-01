@@ -3,11 +3,10 @@ import {
   Component,
   ElementRef,
   Input,
-  OnInit,
   ViewChild,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { srcData } from '../../models/srcData';
+import { SrcData } from '../../models/srcData';
 import { VideoPlayerService } from '../../services/video-player.service';
 
 @Component({
@@ -33,20 +32,16 @@ export class VideoPlayerComponent implements AfterViewInit {
   currentDuration = 0;
 
   totalDuration = 0;
-
   progressInterval!: any;
 
   constructor(private videoService: VideoPlayerService) {}
 
   ngAfterViewInit(): void {
-    console.log('log');
-    this.videoService.src.subscribe((data: srcData) => {
+    this.videoService.src.subscribe((data: SrcData) => {
       if (!data?.type || !data.src) return;
       if (data.type == 'path') {
-        console.log('ino se', data);
         this.videoElement.nativeElement.src = data.src as string;
       } else {
-        console.log('in errrr', data.src);
         this.videoElement.nativeElement.src = window.URL.createObjectURL(
           data.src as File
         );
@@ -69,7 +64,6 @@ export class VideoPlayerComponent implements AfterViewInit {
   }
 
   setDuration() {
-    console.log('in dur', this.videoElement.nativeElement.duration);
     this.totalDuration = this.videoElement.nativeElement.duration;
   }
 
@@ -85,7 +79,6 @@ export class VideoPlayerComponent implements AfterViewInit {
     this.progressInterval = setInterval(() => {
       this.updateProgress();
     }, Math.min(this.totalDuration * 10, 1000));
-    console.log('yup');
     this.isPlaying.next(true);
     this.videoElement.nativeElement.play();
   }
@@ -98,7 +91,6 @@ export class VideoPlayerComponent implements AfterViewInit {
   }
 
   tooglePlayPause() {
-    console.log(this.isPlaying.value, 'here');
     if (this.isPlaying.value === false) {
       this.showAnimation('play');
       this.play();
@@ -122,7 +114,6 @@ export class VideoPlayerComponent implements AfterViewInit {
   }
 
   handelKeyEvent(e: KeyboardEvent) {
-    console.log('here comes key event');
     switch (e.code) {
       case 'KeyL':
       case 'ArrowRight':
@@ -140,8 +131,6 @@ export class VideoPlayerComponent implements AfterViewInit {
   }
   seekTo(e: any) {
     let perc = e.target.value;
-    console.log('output', (perc / 100) * this.totalDuration);
-    console.log('perc is ', perc, this.totalDuration);
     this.videoElement.nativeElement.currentTime =
       (perc / 100) * this.totalDuration;
   }
@@ -188,7 +177,6 @@ export class VideoPlayerComponent implements AfterViewInit {
     this.isLoading = false;
   }
   showAnimation(ofWhat: string) {
-    console.log(ofWhat);
     switch (ofWhat) {
       case 'play':
         this.playSVG.nativeElement.classList.add('showAnimation');

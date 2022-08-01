@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { srcData } from '../models/srcData';
 
 import { VideoPlayerService } from './video-player.service';
 

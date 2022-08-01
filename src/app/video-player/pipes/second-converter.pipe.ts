@@ -13,9 +13,6 @@ export class SecondConverterPipe implements PipeTransform {
     let mDisplay = m < 10 ? '0' + m.toString() : m.toString();
     let sDisplay = s < 10 ? '0' + s.toString() : s.toString();
 
-    let result =
-      (hDisplay == '00' ? '' : hDisplay + ':') + mDisplay + ':' + sDisplay;
-
-    return result;
+    return (hDisplay == '00' ? '' : hDisplay + ':') + mDisplay + ':' + sDisplay;
   }
 }
