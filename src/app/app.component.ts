@@ -1,6 +1,5 @@
-// import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { UploadServiceService } from './service/upload-service.service';
+import { UploadServiceService } from './FileUpload/service/upload-service.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +8,8 @@ import { UploadServiceService } from './service/upload-service.service';
 export class AppComponent {
   title = 'FileUpload';
   file!:File;
-  constructor(   private UploadServiceService: UploadServiceService) {}
+  static file: any;
+  constructor(private UploadServiceService: UploadServiceService) {}
     onFilechange(event:any) {
     this.file = event.target.files[0]
     }
