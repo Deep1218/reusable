@@ -8,7 +8,7 @@
   multiple
   (change)="processFile(imageInput)"
 />
-<!-- <button type="button" (click)="onUpload()">Upload</button> -->
+<button type="button" (click)="onUpload()">Upload</button>
 <div *ngIf="selectedFile" class="img-preview-container">
   <div processFile
     class="img-preview{{ selectedFile.status === 'fail' ? '-error' : '' }}"
