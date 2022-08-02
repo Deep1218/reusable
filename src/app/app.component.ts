@@ -5,17 +5,20 @@ import { UploadServiceService } from './FileUpload/service/upload-service.servic
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 }) 
+
 export class AppComponent {
   title = 'FileUpload';
   file!:File;
   static file: any;
-  constructor(private UploadServiceService: UploadServiceService) {}
+  response:any
+  constructor(private uploadServiceService: UploadServiceService) {}
     onFilechange(event:any) {
     this.file = event.target.files[0]
     }
     upload() {
       if (this.file) {
-        this.UploadServiceService.uploadfile(this.file).subscribe((resp:any) => {
+        this.uploadServiceService.uploadfile(this.file).subscribe((resp:any) => {
+          this.response=resp
           alert("Uploaded")
         })
       } else {
