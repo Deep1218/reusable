@@ -124,6 +124,4 @@ This service will return form group with selected form control. But password for
 
 | Form Control Name | Regex                           | Description |
 | ----------------- | ------------------------------- | ----------- |
-| `username`        | `[a-zA-Z][a-zA-Z0-9.\-_]{5,31}` |1.  The first character is a letter
-2.  The input contains only alphanumeric characters and it can contain '\_'
-3.  The input is 6-32 characters long |
+| `username`        | `[a-zA-Z][a-zA-Z0-9.\-_]{5,31}` |1.  The first character is a letter 2.  The input contains only alphanumeric characters and it can contain '\_' 3.  The input is 6-32 characters long |
