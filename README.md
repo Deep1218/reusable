@@ -4,7 +4,7 @@
 
 ## Description
 
-This is the service which is developed under the Angular 13.0.0 framework to provide the easier and fast creation of the of the form with some predefine fields form which which you can choose. For reCaptcha we have used `ngx-recaptcha` ![package](https://github.com/Enngage/ngx-captcha).
+This is the service which is developed under the Angular 13.0.0 framework to provide the easier and fast creation of the of the form with some predefine fields form which which you can choose. For reCaptcha we have used `ngx-recaptcha` [package](https://github.com/Enngage/ngx-captcha).
 
 ## Configuration
 
@@ -24,17 +24,17 @@ export class AppModule { }
 
 import the following modules in the `app.module.ts` file to use this service.
 
-Copy and Past the below 2 file to your project ![here](https://github.com/Deep1218/reusable/tree/login-with-recaptcha/src/app/service).
+Copy and Past the below 2 file to your project [here](https://github.com/Deep1218/reusable/tree/login-with-recaptcha/src/app/service).
 
 1. forms.service.ts
 2. forms.service.spec.ts (optional)
 
 For google reCAPTCHA:-
 
-If you want to use reCAPTCHA on your website you will require recaptcha site key and secret key.![Google ReCAPTCHA](https://www.google.com/recaptcha/admin/create)
+If you want to use reCAPTCHA on your website you will require recaptcha site key and secret key.[Google ReCAPTCHA](https://www.google.com/recaptcha/admin/create)
 
 After opeing and login fill the form as per the below image.
-[recaptchaImage](./src/assets/img/Recaptcha.png)
+![recaptchaImage](./src/assets/img/Recaptcha.png)
 
 After that you get the site and secret key which you have to past in the form where you want reCaptcha. For more configuration [Here](https://enngage.github.io/ngx-captcha/)
 
@@ -104,7 +104,14 @@ export class LoginComponent {
   }
 }
 ```
+### Optional Methods For ReCAPTCHA:-
 
+| Method Name        | Event | Description                                                                       |
+| -------------------- | -------- |--------------------------------------------------------------------------------- |
+| `handleSuccess(data)`       | This method will trigger `success` event of the `ngx-recaptcha`. | In this method you can handle the success case of the captcha and catch the token. | 
+| `handleReset();`       | This method will trigger `reset` event of the `ngx-recaptcha`| In this method you can handle the reseting of the captcha. |
+| `handleExpire();`       | This method will trigger `expire` event of the `ngx-recaptcha` | In this method you can handle the expiration of the captcha. |
+| `handleLoad();` | This method will trigger `load` event of the `ngx-recaptcha` | In this method you can handle the loding of the captcha.       |
 ## Forms Service
 
 This service will return form group with selected form control. But password form control is fixed.
@@ -122,7 +129,43 @@ This service will return form group with selected form control. But password for
 
 ## Validation Regex Used:-
 
-| Form Control Name | Regex                           | Description                                                                                                                                 |
-| ----------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `username`        | `[a-zA-Z][a-zA-Z0-9.\-_]{5,31}` | The first character is a letter, The input contains only alphanumeric characters and it can contain '\_', The input is 6-32 characters long |
-| `email`        | ```[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?``` | The first character is a letter, The input contains only alphanumeric characters and it can contain '\_', The input is 6-32 characters long |
+**Form control Name:** `password`
+
+**Regex:** `((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{8,64})`
+
+**Description:** 
+
+- Min 8 character and Max 64 character.
+- must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.
+- Can contain special characters.
+
+**Form control Name:** `email`
+
+**Regex:** ```[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?```
+
+**Description:** 
+- Email Validation as per RFC2822 standards.
+
+**Form control Name:** `username`
+
+**Regex:** `[a-zA-Z][a-zA-Z0-9.\\-_]{5,31}`
+
+**Description:** 
+- The first character is a letter.
+- The input contains only alphanumeric characters and it can contain '_'.
+- The input is 6-32 characters long.
+
+**Form control Name:** `phoneNumber`
+
+**Regex:** `(\+?( |-|\.)?[0-9]{1,2}( |-|\.)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-|\.)?([0-9]{3}( |-|\.)?[0-9]{4})`
+
+**Description:** 
+
+- 11-12 digit phone numbers with optional group characters and + char at the begining.
+
+
+## Unit Testing Result:-
+
+![testingResult](./src/assets/img/testing%20Result.png)
+
+
