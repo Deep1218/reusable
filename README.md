@@ -27,6 +27,18 @@ This project is about Slider/Carousel
 
 See [slider Component](https://github.com/Deep1218/reusable/blob/slider/src/app/slider) for example.
 
+### In angular.json file of your Project
+
+```
+"build":{
+    ...
+    "styles":[
+        "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+        ...
+    ]
+}
+```
+
 ### In ts file of your Component
 
 &nbsp;&nbsp; Copy this Code..
