@@ -1,0 +1,23 @@
+<div [ngStyle]="{ width: width + 'px', height: height + 'px' }">
+  <carousel
+    [noWrap]="noWrapSlides"
+    [showIndicators]="showIndicator"
+    [itemsPerSlide]="itemsPerSlide"
+    [singleSlideOffset]="singleSlideOffset"
+    [isAnimated]="isAnimated"
+    [interval]="interval"
+    [pauseOnFocus]="pauseOnFocus"
+    [noPause]="noPause"
+  >
+    <slide
+      *ngFor="let slide of imagesData; let index = index"
+      [ngStyle]="{ margin: margin + 'px' }"
+    >
+      <img
+        [src]="slide"
+        alt="image slide"
+        [ngStyle]="{ width: imgwidth + 'px', height: imgheight + 'px' }"
+      />
+    </slide>
+  </carousel>
+</div>
