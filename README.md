@@ -26,7 +26,7 @@ This project is about Upload Image
 
 # Documentation
 
-    See [appComponent]for example.  
+    See []for example.  
 
 # Requirement Description
 

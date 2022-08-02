@@ -16,10 +16,11 @@ export class AppComponent {
   constructor(private imageService: ImageService) {}
 
   title = 'reusable';
+  response: any;
   
 
   processFile(imageInput: any) {
-    // console.log('Working', imageInput.files[0]);
+  
 
     const reader = new FileReader();
     const file: File = imageInput.files[0];
@@ -29,12 +30,15 @@ export class AppComponent {
     reader.readAsDataURL(file);
   }
   onUpload() {
-    if(this.selectedFile.file)
-    this.imageService.uploadImage(this.selectedFile.file).subscribe((resp:any) => {
-      alert("Uploaded")
-    })
-  else{
-    alert("Please select a Image first")
-  }
+    if(this.selectedFile.file){
+      this.imageService.uploadImage(this.selectedFile.file).subscribe((resp:any) => {
+        this.response = resp
+        alert("Uploaded")
+      })
+    } 
+    else
+    {
+      alert("Please select a Image first")
+    }
 }
 }

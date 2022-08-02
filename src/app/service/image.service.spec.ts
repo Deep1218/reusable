@@ -16,10 +16,6 @@ describe('ImageService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  it('uploadImage',()=>{
-    expect
-  })
  
 
 });
