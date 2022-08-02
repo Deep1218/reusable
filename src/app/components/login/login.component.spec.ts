@@ -8,7 +8,6 @@ import { LoginComponent } from './login.component';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
@@ -80,15 +79,34 @@ describe('LoginComponent', () => {
     });
   });
   describe('recaptcha', () => {
-    it('shloud load on form valid', () => {
-      component.loginForm.patchValue({
-        email: 'deep@testing.com',
-        password: 'Deep@1812',
-      });
-      let captchaDiv = fixture.nativeElement.querySelector('ngx-recaptcha2');
-      console.log(captchaDiv);
-
-      expect(component.captchaElem.load).toBeTruthy();
+    it('should call handleLoad method', () => {
+      let handleLoadSpy = spyOn(component, 'handleLoad').and.callThrough();
+      component.handleLoad();
+      expect(handleLoadSpy).toHaveBeenCalledTimes(1);
     });
+
+    it('should call handleSuccess method', () => {
+      let handleSuccessSpy = spyOn(
+        component,
+        'handleSuccess'
+      ).and.callThrough();
+      component.handleSuccess('Success handler working');
+      expect(handleSuccessSpy).toHaveBeenCalledTimes(1);
+    });
+
+    // it('should load on component create', () => {
+    //   component.loginForm.patchValue({
+    //     email: 'deep@testing.com',
+    //     password: 'Deep@1812',
+    //   });
+    //   fixture.detectChanges();
+
+    //   let debugElement = fixture.debugElement;
+    //   let recaptchaElement = debugElement.query(
+    //     By.css('.recaptcha')
+    //   ).nativeElement;
+
+    //   expect(recaptchaElement).toBeTruthy();
+    // });
   });
 });

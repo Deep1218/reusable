@@ -6,7 +6,6 @@ import { FormsService } from 'src/app/service/forms.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
@@ -26,7 +25,7 @@ export class LoginComponent {
     console.log(data);
   }
 
-  handleReset(): void {
+  handleReset() {
     this.captchaElem.resetCaptcha();
   }
 
