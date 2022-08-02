@@ -18,7 +18,9 @@ describe('LoginComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    setTimeout(function () {
+      fixture.detectChanges();
+    }, 2000);
   });
 
   it('should create and set loginForm as per the method called', () => {
