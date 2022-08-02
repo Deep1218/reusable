@@ -1,6 +1,6 @@
-![Logo](https://www.solutionanalysts.com/wp-content/uploads/2021/02/SA-Logo-high.png)
-
 # Login Form With Recaptcha
+
+![Logo](https://www.solutionanalysts.com/wp-content/uploads/2021/02/SA-Logo-high.png)
 
 ## Description
 
