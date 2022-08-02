@@ -113,15 +113,16 @@ This service will return form group with selected form control. But password for
 
 | Field Options        | Description                                                                       |
 | -------------------- | --------------------------------------------------------------------------------- |
-| createForm(0);       | Will return the form group with email and password form control.                  |
-| createForm(1);       | Will return the form group with username and password form control.               |
-| createForm(1);       | Will return the form group with phoneNumber and password form control.            |
-| createForm(0, true); | Will return the form group with email, password and recaptcha form control.       |
-| createForm(1, true); | Will return the form group with username, password and recaptcha form control.    |
-| createForm(1, true); | Will return the form group with phoneNumber, password and recaptcha form control. |
+| `createForm(0);`       | Will return the form group with email and password form control.                  |
+| `createForm(1);`       | Will return the form group with username and password form control.               |
+| `createForm(2);`       | Will return the form group with phoneNumber and password form control.            |
+| `createForm(0, true);` | Will return the form group with email, password and recaptcha form control.       |
+| `createForm(1, true);` | Will return the form group with username, password and recaptcha form control.    |
+| `createForm(2, true);` | Will return the form group with phoneNumber, password and recaptcha form control. |
 
 ## Validation Regex Used:-
 
-| Form Control Name | Regex                           | Description |
-| ----------------- | ------------------------------- | ----------- |
-| `username`        | `[a-zA-Z][a-zA-Z0-9.\-_]{5,31}` |1.  The first character is a letter 2.  The input contains only alphanumeric characters and it can contain '\_' 3.  The input is 6-32 characters long |
+| Form Control Name | Regex                           | Description                                                                                                                                 |
+| ----------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `username`        | `[a-zA-Z][a-zA-Z0-9.\-_]{5,31}` | The first character is a letter, The input contains only alphanumeric characters and it can contain '\_', The input is 6-32 characters long |
+| `email`        | ```[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?``` | The first character is a letter, The input contains only alphanumeric characters and it can contain '\_', The input is 6-32 characters long |
