@@ -33,7 +33,7 @@ export class AppComponent {
     if(this.selectedFile.file){
       this.imageService.uploadImage(this.selectedFile.file).subscribe((resp:any) => {
         this.response = resp
-        alert("Uploaded")
+        alert("Uploaded") 
       })
     } 
     else

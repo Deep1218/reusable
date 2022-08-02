@@ -27,18 +27,14 @@ describe('AppComponent', () => {
   it(`should have as title 'reusable'`, () => {
     expect(app.title).toEqual('reusable');
   });
-
-  
   it('processFile',()=>{
-   
-    const mockFile = new File([''], 'filename.csv', { type: 'text/csv' });
+   const mockFile = new File([''], 'filename.csv', { type: 'text/csv' });
     app.processFile({files:[mockFile]})
     fixture.detectChanges()
+    app.selectedFile
 
     app.onUpload();
-
-
-  })
+})
   // it('onUpload',()=>{
   //   const mockFile = new File([''], 'filename.csv', { type: 'text/csv' });
   //   app.file = mockFile;
