@@ -20,10 +20,12 @@ export class AppComponent {
   
 
   processFile(imageInput: any) {
-  
-
     const reader = new FileReader();
-    const file: File = imageInput.files[0];
+    const fileList: FileList = imageInput.files as FileList;   
+    console.log(fileList);
+    const file: File = fileList[0];
+    // console.log(file);
+    
     reader.addEventListener('load', (event: any) => {
       this.selectedFile = new ImageSnippet(event.target.result, file);
     })

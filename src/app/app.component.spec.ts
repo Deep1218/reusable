@@ -31,7 +31,6 @@ describe('AppComponent', () => {
    const mockFile = new File([''], 'filename.csv', { type: 'text/csv' });
     app.processFile({files:[mockFile]})
     fixture.detectChanges()
-    app.selectedFile
 
     app.onUpload();
 })
