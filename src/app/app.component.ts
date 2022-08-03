@@ -3,14 +3,14 @@ import { UploadServiceService } from './FileUpload/service/upload-service.servic
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+
 }) 
 
 export class AppComponent {
   title = 'FileUpload';
   file!:File;
   static file: any;
-  response:any
+  response:any;
   constructor(private uploadServiceService: UploadServiceService) {}
     onFilechange(event:any) {
     this.file = event.target.files[0]
