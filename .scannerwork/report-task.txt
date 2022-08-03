@@ -2,5 +2,5 @@ projectKey=reuable_comp
 serverUrl=http://localhost:9000
 serverVersion=9.5.0.56709
 dashboardUrl=http://localhost:9000/dashboard?id=reuable_comp
-ceTaskId=AYJedt-uW19iT3XHRrFv
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYJedt-uW19iT3XHRrFv
+ceTaskId=AYJjJWrHlawv4XRLPqoX
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYJjJWrHlawv4XRLPqoX
