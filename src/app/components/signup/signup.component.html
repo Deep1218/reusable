@@ -7,7 +7,7 @@
       <span class="fw-bold fs-3">Welcome</span>
     </div>
     <div class="col-12">
-      <form [formGroup]="signupForm" class="my-3">
+      <form [formGroup]="signupForm" class="my-3" (ngSubmit)="onSubmit()">
         <div class="row gx-1">
           <div class="col-6">
             <div class="form-floating mb-2">

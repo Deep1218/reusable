@@ -5,18 +5,24 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+declare interface test {
+  firstName?:true 
+  lastName?: true,
+  username?: true,
+  email?: true,
+  phoneNumber?: true,
+  profilePic?: true,
+  recaptcha?: true
+}
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class FormsService {
   form!: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    // Regex for Password :-
-    // - Min 8 character and Max 64 character
-    // - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
-    // - Can contain special characters
     this.form = this.fb.group({
       password: [
         '',
@@ -75,15 +81,7 @@ export class FormsService {
     return this.form;
   }
 
-  public createSignUpForm(
-    firstName: boolean = true,
-    lastName: boolean = true,
-    username: boolean = true,
-    email: boolean = true,
-    profilePic: boolean = true,
-    recaptcha: boolean = true
-  ): FormGroup {
-    
+  public createSignUpForm(options:test): FormGroup {
     // confirmPasswords
     let confirmPasswordCtrl = new FormControl();
       this.form.addControl('confirmPassword', confirmPasswordCtrl);
@@ -93,8 +91,9 @@ export class FormsService {
           '((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{8,64})'
         ),
       ]);
+
     // firstName
-    if (firstName) {
+    if (options.firstName) {
       let firstNameCtrl = new FormControl();
       this.form.addControl('firstName', firstNameCtrl);
       firstNameCtrl.setValidators([
@@ -104,7 +103,7 @@ export class FormsService {
     }
 
     // lastName
-    if (lastName) {
+    if (options.lastName) {
       let lastNameCtrl = new FormControl();
       this.form.addControl('lastName', lastNameCtrl);
       lastNameCtrl.setValidators([
@@ -114,14 +113,14 @@ export class FormsService {
     }
 
     // username
-    if (username) {
+    if (options.username) {
       let usernameCtrl = new FormControl();
       this.form.addControl('username', usernameCtrl);
       usernameCtrl.setValidators([Validators.required]);
     }
 
     // email
-    if (email) {
+    if (options.email) {
       let emailCtrl = new FormControl();
       this.form.addControl('email', emailCtrl);
       emailCtrl.setValidators([
@@ -133,7 +132,7 @@ export class FormsService {
     }
 
     // profile pic
-    if (profilePic) {
+    if (options.profilePic) {
       let profilePicCtrl = new FormControl();
       this.form.addControl('profilePic', profilePicCtrl);
       profilePicCtrl.setValidators([
@@ -143,7 +142,7 @@ export class FormsService {
     }
 
     // recaptcha
-    if (recaptcha) {
+    if (options.recaptcha) {
       let recaptchaCtrl = new FormControl();
       this.form.addControl('recaptcha', recaptchaCtrl);
       recaptchaCtrl.setValidators([Validators.required]);
