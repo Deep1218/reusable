@@ -74,15 +74,25 @@ export class FormsService {
     }
     return this.form;
   }
+
   public createSignUpForm(
     firstName: boolean = true,
     lastName: boolean = true,
     username: boolean = true,
     email: boolean = true,
-    confirmPassword: boolean = true,
     profilePic: boolean = true,
     recaptcha: boolean = true
   ): FormGroup {
+    
+    // confirmPasswords
+    let confirmPasswordCtrl = new FormControl();
+      this.form.addControl('confirmPassword', confirmPasswordCtrl);
+      confirmPasswordCtrl.setValidators([
+        Validators.required,
+        Validators.pattern(
+          '((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{8,64})'
+        ),
+      ]);
     // firstName
     if (firstName) {
       let firstNameCtrl = new FormControl();
@@ -118,18 +128,6 @@ export class FormsService {
         Validators.required,
         Validators.pattern(
           "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-        ),
-      ]);
-    }
-
-    // confirmPassword
-    if (confirmPassword) {
-      let confirmPasswordCtrl = new FormControl();
-      this.form.addControl('confirmPassword', confirmPasswordCtrl);
-      confirmPasswordCtrl.setValidators([
-        Validators.required,
-        Validators.pattern(
-          '((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{8,64})'
         ),
       ]);
     }
