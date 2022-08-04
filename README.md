@@ -1,19 +1,13 @@
 # OTP UI
 
-This project is about OTP UI
+This project is about OTP UI.
+You can customize OTP length form title and description.
 
 ## Project Prerequisite
 
 1. Angular CLI v13.0.0
 2. Node.js v16.16.0
 3. Project uses [ngx-bootstrap](https://www.npmjs.com/package/ngx-bootstrap) v8.0.0, To add ngx-bootstrap : <br /> `ng add ngx-bootstrap@8.0.0`
-
-## Adding Component to your project
-
-1. Copy OTP module [folder](https://github.com/Deep1218/reusable/tree/otp-ui/src/app) to your project
-2. Add OtpModule to your module
-3. Use OtpService in your compoent
-4. See [documentation](https://github.com/Deep1218/reusable/tree/otp-ui#documentation) for more details
 
 ## Running Development server
 
@@ -23,6 +17,63 @@ This project is about OTP UI
 ## Running unit tests
 
 1. Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Adding Component to your project
+
+- Copy OTP module [folder](https://github.com/Deep1218/reusable/tree/otp-ui/src/app) to your project
+- Add OtpModule to your module
+
+```
+
+@NgModule({
+  ...
+  imports: [
+    ...
+    VideoPlayerModule,
+    ...
+  ],
+  ...
+})
+```
+
+- Implementation - 1 : Show using HTML template
+
+```
+// in html file:
+...
+<otp-component *ngIf="show" (onVerify)="verify($event)"></otp-component>
+...
+
+// in ts file:
+...
+show=true;
+verify(otp:number){
+  console.log(otp)
+}
+...
+```
+
+- Implementation - 2 : Show using OtpService.
+
+```
+import { OtpService } from './otp/services/otp.service';
+...
+constructor(private otpService: OtpService) {
+  this.otpService.onVerify.subscribe((otp) => {
+    console.log(otp);
+  });
+}
+...
+// Show the otp form
+this.otpService.show({
+  formMessage: 'this is form message',
+  formTitle: 'First',
+  otpLength: 6,
+});
+
+// Manually hide the otp form
+this.otpService.hide();
+```
 
 ## Documentation
 

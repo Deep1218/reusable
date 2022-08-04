@@ -9,14 +9,11 @@ import { OtpService } from './otp/services/otp.service';
 export class AppComponent {
   constructor(private otpService: OtpService) {
     this.otpService.onVerify.subscribe((otp) => {
-      console.log('final otp is', otp);
+      console.log(otp);
     });
   }
 
   showComponentUsingTemplate = false;
-  showUsingTemplate() {
-    this.showComponentUsingTemplate = true;
-  }
 
   show() {
     this.otpService.show({
@@ -24,5 +21,8 @@ export class AppComponent {
       formTitle: 'sFirst',
       otpLength: 6,
     });
+  }
+  verify(otp: number) {
+    console.log(otp);
   }
 }

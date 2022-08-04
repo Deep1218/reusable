@@ -15,4 +15,7 @@
   dolore, sunt asperiores ad quo consequuntur porro ipsam ipsa.
 </p>
 
-<otp-component *ngIf="showComponentUsingTemplate"></otp-component>
+<otp-component
+  *ngIf="showComponentUsingTemplate"
+  (onVerify)="verify($event)"
+></otp-component>
