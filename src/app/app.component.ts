@@ -1,10 +1,29 @@
 import { Component } from '@angular/core';
+import { FormGroup,FormBuilder,Form } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
+
+}) 
+
 export class AppComponent {
-  title = 'reusable';
+  title = 'FileUpload';
+  form!: FormGroup ;
+  progress: number = 0;
+
+  constructor(
+    public fb: FormBuilder,
+  
+  ) {
+    this.form = this.fb.group({
+      name: [''],
+      avatar: [null]
+    })
+  }
+  uploadFile($event:any){}
+
+  submitUser(){
+
+  }
 }
