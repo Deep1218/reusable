@@ -5,13 +5,15 @@ import { UploadServiceService } from './upload-service.service';
 
 describe('UploadServiceService', () => {
   let service: UploadServiceService;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[HttpClientModule],
     });
     service = TestBed.inject(UploadServiceService);
   });
-   it('should be created', () => {
+
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });
