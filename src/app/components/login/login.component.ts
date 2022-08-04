@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ReCaptcha2Component } from 'ngx-captcha';
 import { FormsService } from 'src/app/service/forms.service';
@@ -6,20 +6,18 @@ import { FormsService } from 'src/app/service/forms.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
   loginForm: FormGroup;
+  formData: any;
 
   constructor(private formService: FormsService) {
-    this.loginForm = this.formService.createLoginForm('email');
+    this.loginForm = this.formService.createForm(0, true);
   }
 
-  ngOnInit(): void {}
-
   onSubmitLogin() {
-    console.log('Form submitted');
+    this.formData = this.loginForm.value;
   }
 
   // Below methods are used only for recaptcha
@@ -27,7 +25,7 @@ export class LoginComponent implements OnInit {
     console.log(data);
   }
 
-  handleReset(): void {
+  handleReset() {
     this.captchaElem.resetCaptcha();
   }
 

@@ -14,6 +14,11 @@ declare interface signupFields {
   profilePic?: true
 }
 
+enum fieldOption {
+  EMAIL,
+  USERNAME,
+  PHONENUMBER,
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -39,13 +44,10 @@ export class FormsService {
    * @param options is a string allow you to choose the other field.
    * @param recaptcha is a boolean allow you to choose recaptcha.
    */
-  public createLoginForm(
-    options: string,
-    recaptcha: boolean = false
-  ): FormGroup {
-    switch (options) {
-      case 'email':
-        let emailCtrl = new FormControl();
+  public createForm(field: fieldOption, recaptcha: boolean = false): FormGroup {
+    switch (field) {
+      case fieldOption.EMAIL:
+        let emailCtrl = new FormControl('');
         this.form.addControl('email', emailCtrl);
         emailCtrl.setValidators([
           Validators.required,
@@ -54,13 +56,20 @@ export class FormsService {
           ),
         ]);
         break;
-      case 'username':
-        let usernameCtrl = new FormControl();
+      case fieldOption.USERNAME:
+        let usernameCtrl = new FormControl('');
         this.form.addControl('username', usernameCtrl);
-        usernameCtrl.setValidators([Validators.required]);
+        // Regex for Username :-
+        // The first character is a letter
+        // The input contains only alphanumeric characters and it can contain '_'
+        // The input is 6-32 characters long
+        usernameCtrl.setValidators([
+          Validators.required,
+          Validators.pattern('[a-zA-Z][a-zA-Z0-9.\\-_]{5,31}'),
+        ]);
         break;
-      case 'phoneNumber':
-        let phoneNumberCtrl = new FormControl();
+      case fieldOption.PHONENUMBER:
+        let phoneNumberCtrl = new FormControl('');
         this.form.addControl('phoneNumber', phoneNumberCtrl);
         phoneNumberCtrl.setValidators([
           Validators.required,
@@ -73,7 +82,7 @@ export class FormsService {
 
     // recaptcha
     if (recaptcha) {
-      let recaptchaCtrl = new FormControl();
+      let recaptchaCtrl = new FormControl('');
       this.form.addControl('recaptcha', recaptchaCtrl);
       recaptchaCtrl.setValidators([Validators.required]);
     }
