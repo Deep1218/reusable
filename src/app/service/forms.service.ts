@@ -5,14 +5,13 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-declare interface test {
+declare interface signupFields {
   firstName?:true 
   lastName?: true,
   username?: true,
   email?: true,
   phoneNumber?: true,
-  profilePic?: true,
-  recaptcha?: true
+  profilePic?: true
 }
 
 @Injectable({
@@ -36,15 +35,15 @@ export class FormsService {
     });
   }
   /**
-   * @desc Method will create login form with the nec. And Return a FormGroup
-   * @param option is a string allow you to choose the other field.
+   * @desc Method will create login form with the recaptcha. And Return a FormGroup
+   * @param options is a string allow you to choose the other field.
    * @param recaptcha is a boolean allow you to choose recaptcha.
    */
   public createLoginForm(
-    option: string,
+    options: string,
     recaptcha: boolean = false
   ): FormGroup {
-    switch (option) {
+    switch (options) {
       case 'email':
         let emailCtrl = new FormControl();
         this.form.addControl('email', emailCtrl);
@@ -81,7 +80,12 @@ export class FormsService {
     return this.form;
   }
 
-  public createSignUpForm(options:test): FormGroup {
+  /**
+   * @desc Method will create signup form with the recaptcha. And Return a FormGroup
+   * @param options is a string allow you to choose the other field.
+   * @param recaptcha is a boolean allow you to choose recaptcha.
+   */
+  public createSignUpForm(options: signupFields, recaptcha: boolean = false): FormGroup {
     // confirmPasswords
     let confirmPasswordCtrl = new FormControl();
       this.form.addControl('confirmPassword', confirmPasswordCtrl);
@@ -141,8 +145,18 @@ export class FormsService {
       ]);
     }
 
+    if(options.phoneNumber){
+      let phoneNumberCtrl = new FormControl();
+        this.form.addControl('phoneNumber', phoneNumberCtrl);
+        phoneNumberCtrl.setValidators([
+          Validators.required,
+          Validators.pattern(
+            '(\\+?( |-|\\.)?[0-9]{1,2}( |-|\\.)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|\\.)?([0-9]{3}( |-|\\.)?[0-9]{4})'
+          ),
+        ]);
+    }
     // recaptcha
-    if (options.recaptcha) {
+    if (recaptcha) {
       let recaptchaCtrl = new FormControl();
       this.form.addControl('recaptcha', recaptchaCtrl);
       recaptchaCtrl.setValidators([Validators.required]);

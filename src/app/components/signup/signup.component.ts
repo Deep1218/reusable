@@ -13,7 +13,7 @@ export class SignupComponent {
   signupForm!: FormGroup;
 
   constructor(private formservice: FormsService) {
-    this.signupForm = this.formservice.createSignUpForm({firstName:true,lastName:true,email:true,username:true, recaptcha: true});
+    this.signupForm = this.formservice.createSignUpForm({firstName:true,lastName:true,email:true, username:true, phoneNumber:true}, true);
     console.log(this.signupForm);
   }
 

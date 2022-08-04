@@ -10,7 +10,7 @@
       <form [formGroup]="signupForm" class="my-3" (ngSubmit)="onSubmit()">
         <div class="row gx-1">
           <div class="col-6">
-            <div class="form-floating mb-2">
+            <div class="form-floating mb-2" *ngIf="signupForm.contains('firstName')">
               <input
                 type="text"
                 class="form-control"
@@ -28,7 +28,7 @@
             </div>
           </div>
           <div class="col-6">
-            <div class="form-floating mb-2">
+            <div class="form-floating mb-2" *ngIf="signupForm.contains('lastName')">
               <input
                 type="text"
                 class="form-control"
@@ -46,7 +46,7 @@
             </div>
           </div>
         </div>
-        <div class="form-floating mb-2">
+        <div class="form-floating mb-2" *ngIf="signupForm.contains('username')">
           <input
             type="text"
             class="form-control"
@@ -62,7 +62,7 @@
           />
           <label for="floatingInput">Username</label>
         </div>
-        <div class="form-floating mb-2">
+        <div class="form-floating mb-2" *ngIf="signupForm.contains('email')">
           <input
             type="text"
             class="form-control"
@@ -77,6 +77,22 @@
             }"
           />
           <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating mb-2" *ngIf="signupForm.contains('phoneNumber')">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="phoneNumber"
+            formControlName="phoneNumber"
+            [ngClass]="{
+              'is-valid': signupForm.get('phoneNumber')?.valid,
+              'is-invalid':
+                !signupForm.get('phoneNumber')?.valid &&
+                signupForm.get('phoneNumber')?.touched
+            }"
+          />
+          <label for="floatingInput">Phone Number</label>
         </div>
 
         <div class="row gx-1 mb-3">
