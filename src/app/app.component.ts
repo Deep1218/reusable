@@ -3,7 +3,6 @@ import { UploadServiceService } from './FileUpload/service/upload-service.servic
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-
 }) export class AppComponent {
   title = 'FileUpload';
   file!:File;
