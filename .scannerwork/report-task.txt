@@ -2,5 +2,5 @@ projectKey=ImageUploader
 serverUrl=http://localhost:9000
 serverVersion=9.5.0.56709
 dashboardUrl=http://localhost:9000/dashboard?id=ImageUploader
-ceTaskId=AYJjKkiClawv4XRLPqok
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYJjKkiClawv4XRLPqok
+ceTaskId=AYJnKPOh7x0C-flQUxMp
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYJnKPOh7x0C-flQUxMp
