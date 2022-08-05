@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-declare interface signupFields {
+declare interface SIGNUPOPTION {
   firstName?:true 
   lastName?: true,
   username?: true,
@@ -44,8 +44,8 @@ export class FormsService {
    * @param options is a string allow you to choose the other field.
    * @param recaptcha is a boolean allow you to choose recaptcha.
    */
-  public createForm(field: fieldOption, recaptcha: boolean = false): FormGroup {
-    switch (field) {
+  public createLoginForm(options: fieldOption, recaptcha: boolean = false): FormGroup {
+    switch (options) {
       case fieldOption.EMAIL:
         let emailCtrl = new FormControl('');
         this.form.addControl('email', emailCtrl);
@@ -94,20 +94,20 @@ export class FormsService {
    * @param options is a string allow you to choose the other field.
    * @param recaptcha is a boolean allow you to choose recaptcha.
    */
-  public createSignUpForm(options: signupFields, recaptcha: boolean = false): FormGroup {
+  public createSignUpForm(options: SIGNUPOPTION, recaptcha: boolean = false): FormGroup {
     // confirmPasswords
-    let confirmPasswordCtrl = new FormControl();
-      this.form.addControl('confirmPassword', confirmPasswordCtrl);
-      confirmPasswordCtrl.setValidators([
-        Validators.required,
-        Validators.pattern(
-          '((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{8,64})'
-        ),
-      ]);
+    let confirmPasswordCtrl = new FormControl('');
+    this.form.addControl('confirmPassword', confirmPasswordCtrl);
+    confirmPasswordCtrl.setValidators([
+      Validators.required,
+      Validators.pattern(
+        '((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{8,64})'
+      ),
+    ]);
 
     // firstName
     if (options.firstName) {
-      let firstNameCtrl = new FormControl();
+      let firstNameCtrl = new FormControl('');
       this.form.addControl('firstName', firstNameCtrl);
       firstNameCtrl.setValidators([
         Validators.required,
@@ -117,7 +117,7 @@ export class FormsService {
 
     // lastName
     if (options.lastName) {
-      let lastNameCtrl = new FormControl();
+      let lastNameCtrl = new FormControl('');
       this.form.addControl('lastName', lastNameCtrl);
       lastNameCtrl.setValidators([
         Validators.required,
@@ -127,14 +127,14 @@ export class FormsService {
 
     // username
     if (options.username) {
-      let usernameCtrl = new FormControl();
+      let usernameCtrl = new FormControl('');
       this.form.addControl('username', usernameCtrl);
       usernameCtrl.setValidators([Validators.required]);
     }
 
     // email
     if (options.email) {
-      let emailCtrl = new FormControl();
+      let emailCtrl = new FormControl('');
       this.form.addControl('email', emailCtrl);
       emailCtrl.setValidators([
         Validators.required,
@@ -146,7 +146,7 @@ export class FormsService {
 
     // profile pic
     if (options.profilePic) {
-      let profilePicCtrl = new FormControl();
+      let profilePicCtrl = new FormControl('');
       this.form.addControl('profilePic', profilePicCtrl);
       profilePicCtrl.setValidators([
         Validators.required,
@@ -155,7 +155,7 @@ export class FormsService {
     }
 
     if(options.phoneNumber){
-      let phoneNumberCtrl = new FormControl();
+      let phoneNumberCtrl = new FormControl('');
         this.form.addControl('phoneNumber', phoneNumberCtrl);
         phoneNumberCtrl.setValidators([
           Validators.required,
@@ -166,7 +166,7 @@ export class FormsService {
     }
     // recaptcha
     if (recaptcha) {
-      let recaptchaCtrl = new FormControl();
+      let recaptchaCtrl = new FormControl('');
       this.form.addControl('recaptcha', recaptchaCtrl);
       recaptchaCtrl.setValidators([Validators.required]);
     }

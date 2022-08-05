@@ -13,7 +13,7 @@ export class LoginComponent {
   formData: any;
 
   constructor(private formService: FormsService) {
-    this.loginForm = this.formService.createForm(0, true);
+    this.loginForm = this.formService.createLoginForm(0, true);
   }
 
   onSubmitLogin() {
@@ -30,7 +30,6 @@ export class LoginComponent {
   }
 
   handleExpire() {
-    console.log('Expired');
     this.captchaElem.reloadCaptcha();
   }
 
