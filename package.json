@@ -1,5 +1,5 @@
 {
-  "name": "reusable",
+  "name": "SignUp",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "sonar": "sonar-scanner -Dsonar.login=admin -Dsonar.password=Deep@18 -Dproject.settings=file.properties "
+    "sonar": "sonar-scanner -Dsonar.login=admin -Dsonar.password=Deep@18 -Dproject.settings=file.properties"
   },
   "private": true,
   "dependencies": {
