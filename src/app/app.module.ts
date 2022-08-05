@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, SignupComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
