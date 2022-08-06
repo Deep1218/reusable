@@ -13,12 +13,20 @@ export class SignupComponent {
   formData: any;
 
   constructor(private formService: FormsService) {
-    this.signupForm = this.formService.createSignUpForm({firstName:true,lastName:true,email:true, username:true, phoneNumber:true}, true);
-    console.log(this.signupForm);
+    this.signupForm = this.formService.createSignUpForm(
+      {
+        firstName: true,
+        lastName: true,
+        email: true,
+        username: true,
+        phoneNumber: true,
+      },
+      true
+    );
   }
 
-  onSubmit(){
-    this.formData = this.signupForm.value
+  onSubmit() {
+    this.formData = this.signupForm.value;
   }
 
   // Below methods are used only for recaptcha
@@ -31,7 +39,6 @@ export class SignupComponent {
   }
 
   handleExpire() {
-    console.log('Expired');
     this.captchaElem.reloadCaptcha();
   }
 

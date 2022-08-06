@@ -10,7 +10,10 @@
       <form [formGroup]="signupForm" class="my-3" (ngSubmit)="onSubmit()">
         <div class="row gx-1">
           <div class="col-6">
-            <div class="form-floating mb-2" *ngIf="signupForm.contains('firstName')">
+            <div
+              class="form-floating mb-2"
+              *ngIf="signupForm.contains('firstName')"
+            >
               <input
                 type="text"
                 class="form-control"
@@ -28,7 +31,10 @@
             </div>
           </div>
           <div class="col-6">
-            <div class="form-floating mb-2" *ngIf="signupForm.contains('lastName')">
+            <div
+              class="form-floating mb-2"
+              *ngIf="signupForm.contains('lastName')"
+            >
               <input
                 type="text"
                 class="form-control"
@@ -78,7 +84,10 @@
           />
           <label for="floatingInput">Email</label>
         </div>
-        <div class="form-floating mb-2" *ngIf="signupForm.contains('phoneNumber')">
+        <div
+          class="form-floating mb-2"
+          *ngIf="signupForm.contains('phoneNumber')"
+        >
           <input
             type="text"
             class="form-control"
@@ -138,6 +147,7 @@
           >
             <ngx-recaptcha2
               #captchaElem
+              class="recaptcha"
               [siteKey]="'6Le2VwEhAAAAALrob9hjQt8fpgHO8x1LRiI25JeH'"
               (reset)="handleReset()"
               (expire)="handleExpire()"

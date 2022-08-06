@@ -1,7 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormsService } from './forms.service';
 
@@ -11,12 +9,12 @@ describe('FormsService', () => {
     TestBed.configureTestingModule({ imports: [ReactiveFormsModule] });
     service = TestBed.inject(FormsService);
   });
-  describe('Login', ()=>{
+  describe('Login', () => {
     it('should be created and form has only password control', () => {
       expect(service.form.value).toEqual({ password: '' });
       expect(service).toBeTruthy();
     });
-  
+
     it('should set form value with email and password', () => {
       service.createLoginForm(0);
       expect(service.form.value).toEqual({ password: '', email: '' });
@@ -54,45 +52,168 @@ describe('FormsService', () => {
       });
     });
   });
-  
-  describe('SignUp', ()=>{
+
+  describe('SignUp', () => {
     it('should be created and form has only password and confirm password control', () => {
-      expect(service.form.value).toEqual({ password: ''});
+      expect(service.form.value).toEqual({ password: '' });
       expect(service).toBeTruthy();
     });
-  
+
     it('should set form value with confirm password and password', () => {
       service.createSignUpForm({});
       expect(service.form.value).toEqual({ password: '', confirmPassword: '' });
     });
     it('should set form value with password, confirmPasswor, firstName, lastName, and username', () => {
-      service.createSignUpForm({firstName: true, lastName: true, username: true});
-      expect(service.form.value).toEqual({ password: '', confirmPassword: '', username: '', firstName: '', lastName: '' });
+      service.createSignUpForm({
+        firstName: true,
+        lastName: true,
+        username: true,
+      });
+      expect(service.form.value).toEqual({
+        password: '',
+        confirmPassword: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+      });
     });
     it('should set form value with phone number, password, confirm password, first name, last name, and username', () => {
-      service.createSignUpForm({firstName: true, lastName: true, username: true, phoneNumber: true});
-      expect(service.form.value).toEqual({ password: '', confirmPassword: '', phoneNumber: '',  username: '', firstName: '', lastName: '' });
+      service.createSignUpForm({
+        firstName: true,
+        lastName: true,
+        username: true,
+        phoneNumber: true,
+      });
+      expect(service.form.value).toEqual({
+        password: '',
+        confirmPassword: '',
+        phoneNumber: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+      });
     });
     it('should set form value with phone number, email, password, confirm password, first name, last name, and username', () => {
-      service.createSignUpForm({firstName: true, lastName: true, username: true, phoneNumber: true, email: true});
-      expect(service.form.value).toEqual({ password: '', confirmPassword: '', phoneNumber: '',  username: '', firstName: '', lastName: '', email: '' });
+      service.createSignUpForm({
+        firstName: true,
+        lastName: true,
+        username: true,
+        phoneNumber: true,
+        email: true,
+      });
+      expect(service.form.value).toEqual({
+        password: '',
+        confirmPassword: '',
+        phoneNumber: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+      });
+    });
+    it('should set form value with phone number, email, password, confirm password, first name, last name, profile picture and username', () => {
+      service.createSignUpForm({
+        firstName: true,
+        lastName: true,
+        username: true,
+        phoneNumber: true,
+        email: true,
+        profilePic: true,
+      });
+      expect(service.form.value).toEqual({
+        password: '',
+        confirmPassword: '',
+        phoneNumber: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        profilePic: '',
+      });
     });
 
     it('should set form value with confirm password, recaptcha and password', () => {
       service.createSignUpForm({}, true);
-      expect(service.form.value).toEqual({ password: '', confirmPassword: '', recaptcha: '' });
+      expect(service.form.value).toEqual({
+        password: '',
+        confirmPassword: '',
+        recaptcha: '',
+      });
     });
     it('should set form value with password, confirm password, firstName, lastName, recaptcha and username', () => {
-      service.createSignUpForm({firstName: true, lastName: true, username: true}, true);
-      expect(service.form.value).toEqual({ password: '', confirmPassword: '', username: '', firstName: '', lastName: '', recaptcha: '' });
+      service.createSignUpForm(
+        { firstName: true, lastName: true, username: true },
+        true
+      );
+      expect(service.form.value).toEqual({
+        password: '',
+        confirmPassword: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+        recaptcha: '',
+      });
     });
     it('should set form value with phone number, password, confirm password, first name, last name, recaptcha and username', () => {
-      service.createSignUpForm({firstName: true, lastName: true, username: true, phoneNumber: true}, true);
-      expect(service.form.value).toEqual({ password: '', confirmPassword: '', phoneNumber: '',  username: '', firstName: '', lastName: '', recaptcha: '' });
+      service.createSignUpForm(
+        { firstName: true, lastName: true, username: true, phoneNumber: true },
+        true
+      );
+      expect(service.form.value).toEqual({
+        password: '',
+        confirmPassword: '',
+        phoneNumber: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+        recaptcha: '',
+      });
     });
     it('should set form value with phone number, email, password, confirm password, first name, last name, recaptcha and username', () => {
-      service.createSignUpForm({firstName: true, lastName: true, username: true, phoneNumber: true, email: true}, true);
-      expect(service.form.value).toEqual({ password: '', confirmPassword: '', phoneNumber: '',  username: '', firstName: '', lastName: '', email: '', recaptcha: '' });
+      service.createSignUpForm(
+        {
+          firstName: true,
+          lastName: true,
+          username: true,
+          phoneNumber: true,
+          email: true,
+        },
+        true
+      );
+      expect(service.form.value).toEqual({
+        password: '',
+        confirmPassword: '',
+        phoneNumber: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        recaptcha: '',
+      });
+    });
+    it('should set form value with phone number, email, password, confirm password, first name, last name, profile picture, username and recaptcha', () => {
+      service.createSignUpForm(
+        {
+          firstName: true,
+          lastName: true,
+          username: true,
+          phoneNumber: true,
+          email: true,
+          profilePic: true,
+        },
+        true
+      );
+      expect(service.form.value).toEqual({
+        password: '',
+        confirmPassword: '',
+        phoneNumber: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        profilePic: '',
+        recaptcha: '',
+      });
     });
   });
 });

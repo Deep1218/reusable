@@ -96,19 +96,19 @@ describe('LoginComponent', () => {
       expect(handleSuccessSpy).toHaveBeenCalledTimes(1);
     });
 
-    // it('should load on component create', () => {
-    //   component.loginForm.patchValue({
-    //     email: 'deep@testing.com',
-    //     password: 'Deep@1812',
-    //   });
-    //   fixture.detectChanges();
+    xit('should load on component create', () => {
+      component.loginForm.patchValue({
+        email: 'deep@testing.com',
+        password: 'Deep@1812',
+      });
+      fixture.detectChanges();
 
-    //   let debugElement = fixture.debugElement;
-    //   let recaptchaElement = debugElement.query(
-    //     By.css('.recaptcha')
-    //   ).nativeElement;
+      let debugElement = fixture.debugElement;
+      let recaptchaElement = debugElement.query(
+        By.css('.recaptcha')
+      ).nativeElement;
 
-    //   expect(recaptchaElement).toBeTruthy();
-    // });
+      expect(recaptchaElement).toBeTruthy();
+    });
   });
 });

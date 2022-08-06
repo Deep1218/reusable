@@ -6,12 +6,12 @@ import {
   Validators,
 } from '@angular/forms';
 declare interface SIGNUPOPTION {
-  firstName?:true 
-  lastName?: true,
-  username?: true,
-  email?: true,
-  phoneNumber?: true,
-  profilePic?: true
+  firstName?: true;
+  lastName?: true;
+  username?: true;
+  email?: true;
+  phoneNumber?: true;
+  profilePic?: true;
 }
 
 enum fieldOption {
@@ -22,7 +22,6 @@ enum fieldOption {
 @Injectable({
   providedIn: 'root',
 })
-
 export class FormsService {
   form!: FormGroup;
 
@@ -44,7 +43,10 @@ export class FormsService {
    * @param options is a string allow you to choose the other field.
    * @param recaptcha is a boolean allow you to choose recaptcha.
    */
-  public createLoginForm(options: fieldOption, recaptcha: boolean = false): FormGroup {
+  public createLoginForm(
+    options: fieldOption,
+    recaptcha: boolean = false
+  ): FormGroup {
     switch (options) {
       case fieldOption.EMAIL:
         let emailCtrl = new FormControl('');
@@ -94,7 +96,10 @@ export class FormsService {
    * @param options is a string allow you to choose the other field.
    * @param recaptcha is a boolean allow you to choose recaptcha.
    */
-  public createSignUpForm(options: SIGNUPOPTION, recaptcha: boolean = false): FormGroup {
+  public createSignUpForm(
+    options: SIGNUPOPTION,
+    recaptcha: boolean = false
+  ): FormGroup {
     // confirmPasswords
     let confirmPasswordCtrl = new FormControl('');
     this.form.addControl('confirmPassword', confirmPasswordCtrl);
@@ -129,7 +134,10 @@ export class FormsService {
     if (options.username) {
       let usernameCtrl = new FormControl('');
       this.form.addControl('username', usernameCtrl);
-      usernameCtrl.setValidators([Validators.required]);
+      usernameCtrl.setValidators([
+        Validators.required,
+        Validators.pattern('[a-zA-Z][a-zA-Z0-9.\\-_]{5,31}'),
+      ]);
     }
 
     // email
@@ -148,21 +156,18 @@ export class FormsService {
     if (options.profilePic) {
       let profilePicCtrl = new FormControl('');
       this.form.addControl('profilePic', profilePicCtrl);
-      profilePicCtrl.setValidators([
-        Validators.required,
-        Validators.pattern(''),
-      ]);
+      profilePicCtrl.setValidators([Validators.required]);
     }
 
-    if(options.phoneNumber){
+    if (options.phoneNumber) {
       let phoneNumberCtrl = new FormControl('');
-        this.form.addControl('phoneNumber', phoneNumberCtrl);
-        phoneNumberCtrl.setValidators([
-          Validators.required,
-          Validators.pattern(
-            '(\\+?( |-|\\.)?[0-9]{1,2}( |-|\\.)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|\\.)?([0-9]{3}( |-|\\.)?[0-9]{4})'
-          ),
-        ]);
+      this.form.addControl('phoneNumber', phoneNumberCtrl);
+      phoneNumberCtrl.setValidators([
+        Validators.required,
+        Validators.pattern(
+          '(\\+?( |-|\\.)?[0-9]{1,2}( |-|\\.)?)?(\\(?[0-9]{3}\\)?|[0-9]{3})( |-|\\.)?([0-9]{3}( |-|\\.)?[0-9]{4})'
+        ),
+      ]);
     }
     // recaptcha
     if (recaptcha) {
