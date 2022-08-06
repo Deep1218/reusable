@@ -1,4 +1,4 @@
-# Login Form With Recaptcha
+# Sign Up Form With Recaptcha
 
 ![Logo](https://www.solutionanalysts.com/wp-content/uploads/2021/02/SA-Logo-high.png)
 
@@ -8,7 +8,7 @@ This is the service which is developed under the Angular 13.0.0 framework to pro
 
 ## Configuration
 
-```bash
+```
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCaptchaModule } from 'ngx-captcha';
@@ -38,7 +38,7 @@ After opeing and login fill the form as per the below image.
 
 After that you get the site and secret key which you have to past in the form where you want reCaptcha. For more configuration [Here](https://enngage.github.io/ngx-captcha/)
 
-```bash
+```
 <ngx-recaptcha2
     class="recaptcha"
     #captchaElem
@@ -59,32 +59,32 @@ After that you get the site and secret key which you have to past in the form wh
 
 ## How to Use Forms Service
 
-After pasting the above 2 files to your project import the service in your component same as how we import other services.
+After pasting the above 2 files to your project import the service in your component same as importing other services.
 
 ### Without Recaptcha:-
 
-```bash
+```
 import { Component, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormsService } from 'src/app/service/forms.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
 })
 export class YOUR_COMPONENT {
-  loginForm: FormGroup;
+  signupForm: FormGroup;
   formData: any;
 
   constructor(private formService: FormsService) {
-    this.loginForm = this.formService.createForm(0, true);
+    this.signupForm = this.formService.createSignUpForm({firstName: true, lastName: true, email: true, username: true, phoneNumber: true});
   }
 }
 ```
 
 ### Wtih Recaptcha:-
 
-```bash
+```
 import { Component, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ReCaptcha2Component } from 'ngx-captcha';
@@ -96,36 +96,50 @@ import { FormsService } from 'src/app/service/forms.service';
 })
 export class LoginComponent {
   @ViewChild('captchaElem') captchaElem!: ReCaptcha2Component;
-  loginForm: FormGroup;
+  signupForm: FormGroup;
   formData: any;
 
   constructor(private formService: FormsService) {
-    this.loginForm = this.formService.createForm(0, true);
+    this.signupForm = this.formService.createSignUpForm({firstName: true, lastName: true, email: true, username: true, phoneNumber: true}, true);
   }
 }
 ```
+
 ### Optional Methods For ReCAPTCHA:-
 
-| Method Name        | Event | Description                                                                       |
-| -------------------- | -------- |--------------------------------------------------------------------------------- |
-| `handleSuccess(data)`       | This method will trigger `success` event of the `ngx-recaptcha`. | In this method you can handle the success case of the captcha and catch the token. | 
-| `handleReset();`       | This method will trigger `reset` event of the `ngx-recaptcha`| In this method you can handle the reseting of the captcha. |
-| `handleExpire();`       | This method will trigger `expire` event of the `ngx-recaptcha` | In this method you can handle the expiration of the captcha. |
-| `handleLoad();` | This method will trigger `load` event of the `ngx-recaptcha` | In this method you can handle the loding of the captcha.       |
+| Method Name           | Event                                                            | Description                                                                        |
+| --------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `handleSuccess(data)` | This method will trigger `success` event of the `ngx-recaptcha`. | In this method you can handle the success case of the captcha and catch the token. |
+| `handleReset();`      | This method will trigger `reset` event of the `ngx-recaptcha`    | In this method you can handle the reseting of the captcha.                         |
+| `handleExpire();`     | This method will trigger `expire` event of the `ngx-recaptcha`   | In this method you can handle the expiration of the captcha.                       |
+| `handleLoad();`       | This method will trigger `load` event of the `ngx-recaptcha`     | In this method you can handle the loding of the captcha.                           |
+
 ## Forms Service
 
 This service will return form group with selected form control. But password form control is fixed.
 
 ### Methods:-
 
-| Field Options        | Description                                                                       |
-| -------------------- | --------------------------------------------------------------------------------- |
-| `createForm(0);`       | Will return the form group with email and password form control.                  |
-| `createForm(1);`       | Will return the form group with username and password form control.               |
-| `createForm(2);`       | Will return the form group with phoneNumber and password form control.            |
-| `createForm(0, true);` | Will return the form group with email, password and recaptcha form control.       |
-| `createForm(1, true);` | Will return the form group with username, password and recaptcha form control.    |
-| `createForm(2, true);` | Will return the form group with phoneNumber, password and recaptcha form control. |
+| Field Options               | Description                                                                            |
+| --------------------------- | -------------------------------------------------------------------------------------- |
+| `createsignUpForm({});`     | Will return the form group with password and confirmPassword form controls.            |
+| `createsignUpForm({},ture)` | Will return the form group with password, confirmPassword and recaptcha form controls. |
+
+### Interface:-
+
+This interface is used as params object type.
+
+```
+declare interface SIGNUPOPTION {
+  firstName?: boolean;
+  lastName?: boolean;
+  username?: boolean;
+  email?: boolean;
+  phoneNumber?: boolean;
+  profilePic?: boolean;
+}
+
+```
 
 ## Validation Regex Used:-
 
@@ -133,7 +147,7 @@ This service will return form group with selected form control. But password for
 
 **Regex:** `((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{8,64})`
 
-**Description:** 
+**Description:**
 
 - Min 8 character and Max 64 character.
 - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.
@@ -141,30 +155,30 @@ This service will return form group with selected form control. But password for
 
 **Form control Name:** `email`
 
-**Regex:** ```[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?```
+**Regex:** `` [a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])? ``
 
-**Description:** 
+**Description:**
+
 - Email Validation as per RFC2822 standards.
 
 **Form control Name:** `username`
 
 **Regex:** `[a-zA-Z][a-zA-Z0-9.\\-_]{5,31}`
 
-**Description:** 
+**Description:**
+
 - The first character is a letter.
-- The input contains only alphanumeric characters and it can contain '_'.
+- The input contains only alphanumeric characters and it can contain '\_'.
 - The input is 6-32 characters long.
 
 **Form control Name:** `phoneNumber`
 
 **Regex:** `(\+?( |-|\.)?[0-9]{1,2}( |-|\.)?)?(\(?[0-9]{3}\)?|[0-9]{3})( |-|\.)?([0-9]{3}( |-|\.)?[0-9]{4})`
 
-**Description:** 
+**Description:**
 
 - 11-12 digit phone numbers with optional group characters and + char at the begining.
 
-
 ## Unit Testing Result:-
 
-![testingResult](./src/assets/img/testing%20Result.png)
-
+![testingResult](./src/assets/img/signUpTesting.png)

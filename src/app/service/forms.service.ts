@@ -6,12 +6,12 @@ import {
   Validators,
 } from '@angular/forms';
 declare interface SIGNUPOPTION {
-  firstName?: true;
-  lastName?: true;
-  username?: true;
-  email?: true;
-  phoneNumber?: true;
-  profilePic?: true;
+  firstName?: boolean;
+  lastName?: boolean;
+  username?: boolean;
+  email?: boolean;
+  phoneNumber?: boolean;
+  profilePic?: boolean;
 }
 
 enum fieldOption {
