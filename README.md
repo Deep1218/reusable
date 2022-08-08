@@ -1,27 +1,66 @@
-# Reusable
+# Audio Player
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+This project is about Audio player
+You can pass url or local file.
+It can be integreted using service or by adding component to your template.
 
-## Development server
+## Project Prerequisite
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Angular CLI v13.0.0
+2. Node.js v16.16.0
 
-## Code scaffolding
+## Running Development server
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. `npm i` in root directory
+2. `ng serve` for dev server (`http://localhost:4200/`)
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Adding Component to your project
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Copy Audio Player module [folder](https://github.com/Deep1218/reusable/tree/audio-player/src/app) to your project
+- Add AudioPlayerModule to your module
 
-## Further help
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+@NgModule({
+  ...
+  imports: [
+    ...
+    AudioPlayerModule,
+    ...
+  ],
+  ...
+})
+```
+
+- Add AudioPlayerComponent to your template
+
+```
+...
+<audio-player [src]="src" title="Your Song Name"></audio-player>
+...
+```
+
+- Use AudioPlayerService to load audio dynamically.
+
+```
+import { AudioPlayerService } from './audio-player/services/audio-player.service';
+...
+constructor(private audioService: AudioPlayerService) {}
+...
+this.audioService.load('YOUR_AUDIO_FILE_URL',"AUDIO_FILE_NAME");
+```
+
+- Or pass local audio file as a parameter
+
+```
+onSelectFile(e: any){
+  let file = e.target.files[0];
+  this.audioService.load(file);
+}
+```
+
+See [app component](https://github.com/Deep1218/reusable/blob/audio-player/src/app/app.component.ts) for example

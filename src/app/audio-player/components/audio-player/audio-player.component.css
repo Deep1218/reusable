@@ -25,12 +25,11 @@
 /*  main  */
 .thumbnail {
   position: relative;
-  width: 5em;
-}
-.thumbnail img {
   width: 3.5em;
   height: 3.5em;
+  margin: 0.75em;
   border-radius: 50%;
+  background-color: white;
 }
 .thumbnail svg,
 .thumbnail svg {
@@ -41,12 +40,12 @@
   position: absolute;
 }
 .middle {
-  padding: 0.5em;
+  margin: 0.5em;
   width: calc(100% - 5em);
   overflow: hidden;
 }
 .middle .title {
-  width: 100%;
+  width: fit-content;
   padding-bottom: 0.5em;
   white-space: nowrap;
 }

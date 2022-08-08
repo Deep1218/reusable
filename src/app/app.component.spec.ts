@@ -28,6 +28,7 @@ describe('AppComponent', () => {
     expect(audioPlayerService.src.getValue()).toEqual({
       type: 'path',
       src: 'xyz',
+      title: 'Your Audio File Name',
     });
   });
 
@@ -42,6 +43,7 @@ describe('AppComponent', () => {
     expect(audioPlayerService.src.getValue()).toEqual({
       type: 'blob',
       src: mockFile,
+      title: 'filename.mp3',
     });
   });
 

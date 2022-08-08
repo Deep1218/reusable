@@ -12,9 +12,9 @@ export class AppComponent {
   urlForm = new FormGroup({
     url: new FormControl('', [Validators.required]),
   });
+
   onFileSelect(e: any) {
     let file = e.target.files[0];
-
     if (!file || !file.type.startsWith('audio')) {
       console.log('invalid file');
       return false;
@@ -24,6 +24,6 @@ export class AppComponent {
   }
 
   loadUrl() {
-    this.audioService.load(this.urlForm.value.url);
+    this.audioService.load(this.urlForm.value.url, 'Your Audio File Name');
   }
 }

@@ -18,6 +18,7 @@ export class AudioPlayerComponent implements AfterViewInit {
 
   @Input('src') audioSource =
     'https://filesamples.com/samples/audio/mp3/sample2.mp3';
+  @Input('title') audioTitle = 'Song Name';
   constructor(private audioService: AudioPlayerService) {}
 
   isPlaying = false;
@@ -28,6 +29,8 @@ export class AudioPlayerComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.audioService.src.subscribe((data: SrcData) => {
       if (!data?.type || !data.src) return;
+      this.audioTitle = data.title;
+      this.isPlaying = false;
       if (data.type == 'path') {
         this.audioElement.nativeElement.src = data.src as string;
       } else {
@@ -40,6 +43,7 @@ export class AudioPlayerComponent implements AfterViewInit {
     this.audioService.src.next({
       type: 'path',
       src: this.audioSource,
+      title: this.audioTitle,
     });
   }
   setDuration() {
@@ -84,5 +88,10 @@ export class AudioPlayerComponent implements AfterViewInit {
     clearInterval(this.updateTimer);
     this.updateTimer = null;
     this.isPlaying = false;
+  }
+  checkIfLongTitle(parent: any, child: any) {
+    let parentWidth = parseInt(getComputedStyle(parent).width.slice(0, -2));
+    let childWidth = parseInt(getComputedStyle(child).width.slice(0, -2));
+    return childWidth > parentWidth;
   }
 }

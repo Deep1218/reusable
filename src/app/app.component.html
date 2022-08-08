@@ -1,14 +1,23 @@
 <div>
   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores eum natus
-  sint nostrum inventore illum nam esse vero?
+  sint nostrum inventore illufdsm nam esse vero?
 </div>
+<br />
+
 <audio-player
   src="https://filesamples.com/samples/audio/mp3/sample2.mp3"
+  title="Test Song Name"
 ></audio-player>
 
-Select Your Video
+<br />
+Select Your Audio
 <input type="file" (change)="onFileSelect($event)" />
+
+<br />
+<br />
 <hr />
+<br />
+
 OR-Enter Video URL:
 <form (ngSubmit)="loadUrl()" [formGroup]="urlForm">
   <input type="text" formControlName="url" />
