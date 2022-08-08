@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
-  upload(file: any) {
-    throw new Error('Method not implemented.');
-  }
+  constructor(private httpClient: HttpClient) { }
+  public uploadfile(file: File) {
+      let formParams = new FormData();
+      formParams.append('myFile', file)
+      return this.httpClient.post('http://localhost:3000/file/uploadFile', formParams,{reportProgress:true,observe:'events'})
+    }
+ }
+  
 
-  constructor() { }
-}
