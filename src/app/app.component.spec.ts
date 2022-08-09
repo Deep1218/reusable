@@ -42,12 +42,9 @@ describe('AppComponent', () => {
     const mockFile = new File([''], 'filename', { type: 'text/pdf' });
     const mockEvt = { target: { files: [mockFile] } };
     app.onSelectFile(mockEvt)
-
     expect(app.file).toEqual(mockEvt.target.files[0])
-    
     app.upload()
   })
- 
   it('upload without file',()=>{
     app.upload()
   })
