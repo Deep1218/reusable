@@ -49,6 +49,7 @@ export class AppComponent {
     } else {
       alert("Please select a file first")
     }
+    
 }
 
 selectFiles(event:any) {
