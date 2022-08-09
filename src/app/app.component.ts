@@ -38,10 +38,8 @@ export class AppComponent {
           this.progressInfos[0].value = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
           alert("uploaded")
-          // this.fileInfos = this.UploadService.getFiles();
         }
-  
-        },
+      },
         err => { 
           this.progressInfos[0].value = 0;
           this.message = 'Could not upload the file:' + this.file.name;
@@ -49,7 +47,7 @@ export class AppComponent {
     } else {
       alert("Please select a file first")
     }
-    
+
 }
 
 selectFiles(event:any) {

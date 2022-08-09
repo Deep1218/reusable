@@ -39,18 +39,30 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Upload');
   });
   it('upload',()=>{
-    const mockFile = new File([''], 'filename', { type: 'text/pdf' });
-    const mockEvt = { target: { files: [mockFile] } };
-    app.onSelectFile(mockEvt)
-    expect(app.file).toEqual(mockEvt.target.files[0])
-    app.upload()
+    // const mockFile = new File([''], 'filename', { type: 'text/pdf' });
+    // const mockEvt = { target: { files: [mockFile] } };
+    // app.onSelectFile(mockEvt)
+    // expect(app.file).toEqual(mockEvt.target.files[0])
+    // app.upload()
   })
   it('upload without file',()=>{
     app.upload()
   })
-  it ('onSelectFile ', () =>{
+  it ('onSelectFile ', () =>{ it ('On file change', () =>{
     
+    
+    app.upload()
   }) 
+  
+
+  }) 
+  it ('selectFiles',()=>{
+    it('on file select',() =>{
+      const mockFile = new File([''], 'filename.csv', { type: 'text/csv' });
+     const mockEvt = { target: { files: [mockFile] } };
+
+    })
+  })
  
   }
   
