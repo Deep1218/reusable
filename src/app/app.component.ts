@@ -1,4 +1,5 @@
 import {
+  FacebookLoginProvider,
   GoogleLoginProvider,
   SocialAuthService,
   SocialUser,
@@ -14,17 +15,18 @@ export class AppComponent {
   title = 'reusable';
   user!: SocialUser;
   GoogleLoginProvider = GoogleLoginProvider;
+  FacebookLoginProvider = FacebookLoginProvider;
 
-  constructor(private _authService: SocialAuthService) {}
+  constructor(private authService: SocialAuthService) {}
 
   ngOnInit() {
-    this._authService.authState.subscribe((user) => {
+    this.authService.authState.subscribe((user) => {
       this.user = user;
+      console.log(this.user);
     });
-    console.log('User', this.user);
   }
 
-  refreshGoogleToken(): void {
-    this._authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+  signInFb() {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 }
