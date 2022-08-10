@@ -1,7 +1,7 @@
 # OTP UI
 
 This project is about OTP UI.
-You can customize OTP length form title and description.
+You can customize OTP length, form title and description.
 
 ## Project Prerequisite
 
@@ -29,7 +29,7 @@ You can customize OTP length form title and description.
   ...
   imports: [
     ...
-    VideoPlayerModule,
+    OtpModule,
     ...
   ],
   ...
