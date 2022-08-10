@@ -21,6 +21,6 @@ Video Preview
 
 <!-- <video [src]="url" *ngIf="format==='video' && url"   height="200" controls multiple (change)="selectFiles($event)" ></video> <br/> -->
 
-<input type='file' multiple (change)="selectFiles($event)" (change)="onSelectFile($event)" accept="video/mp4,video/x-m4v,video/*"/>
+<input type='file' multiple (change)="onSelectFile($event)"  accept="video/mp4,video/x-m4v,video/*"/>
 
- <button  type="button" (click)="upload()" [disabled]="!selectedFiles" class="btn btn-primary mt-3">Upload</button>
+ <button  type="button" (click)="upload()" [disabled]="!file" class="btn btn-primary mt-3">Upload</button>

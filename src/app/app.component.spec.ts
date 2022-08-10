@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { UploadService } from './Service/upload.service';
+
 let app:AppComponent
 let fixture:ComponentFixture<AppComponent>
 
@@ -22,45 +22,33 @@ describe('AppComponent', () => {
         AppComponent
       ],
     }).compileComponents();
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
+
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'reusable'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('reusable');
-  });
+  it ('OnSelectFile', () =>{
+    const mockFile = new File([''], 'filename', { type: '  ' });
+    const mockEvt = { target: { files: [mockFile] } };
+    app.onSelectFile(mockEvt)
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('reusable app is running!');
-  });
-  it(`should have as title 'Upload'`, () => {
-    expect(app.title).toEqual('Upload');
-  });
-
-  it ('onSelectFile ', () =>{ it ('On file change', () =>{
+    expect(app.file).toEqual(mockEvt.target.files[0])
+  })
+  it('upload',()=>{
+    const mockFile = new File([''], 'filename.csv', { type: '' });
+    app.file = mockFile;
     
     app.upload()
-  }) 
-  
-
-  }) 
-  it ('selectFiles',()=>{
-    it('on file select',() =>{
-      const mockFile = new File([''], 'filename.csv', { type: 'text/csv' });
-     const mockEvt = { target: { files: [mockFile] } };
-
-    })
   })
  
+  it('upload without file',()=>{
+    app.upload()
+  })
+
   }
   
   

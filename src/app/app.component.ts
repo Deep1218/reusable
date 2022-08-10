@@ -11,10 +11,9 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 }) 
 
 export class AppComponent {
-  title = 'FileUpload';
+
   url:any;
   format:any;
-  selectedFiles:any;
   progressInfos:any = []; 
   message = '';
   fileInfos: Observable<any> | undefined;
@@ -24,6 +23,7 @@ export class AppComponent {
   }
 
  onSelectFile(event:any) {
+  this.progressInfos = [];
     this.file = event.target.files[0]
     }
 
@@ -50,8 +50,5 @@ export class AppComponent {
 
 }
 
-selectFiles(event:any) {
-  this.progressInfos = [];
-  this.selectedFiles = event.target.files;
-}
+
 }
