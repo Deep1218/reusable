@@ -9,7 +9,22 @@ This project is about Video File
 
 
 # Adding Component to your project
-1. Copy App module [folder]() to your project
-2. Add file upload to your module
+1. Copy App module [folder](https://github.com/Deep1218/reusable/tree/VideoUpload/src/app) to your project
+2. Add upload to your module
 3. Use Service in your compoent
-4. See [documentation]() for more details
+
+# Running Development server
+
+1. `npm i` in root directory
+2. `ng serve` for dev server (`'http://localhost:3000/file/uploadFile')
+
+
+# Running unit tests
+
+1. Run `ng test` to execute the unit tests via [Karma]
+
+# Requirement Description
+
+
+    The application will only accept the Video file types
+    (mp4,m4v).
