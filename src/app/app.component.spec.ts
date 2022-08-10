@@ -2,11 +2,27 @@ import {
   FacebookLoginProvider,
   GoogleLoginProvider,
   SocialAuthServiceConfig,
+  SocialLoginModule,
 } from '@abacritt/angularx-social-login';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
+let config = [
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(
+      '344519721460-k0ssoul47g880kf1f9fgh2k3kdgnhlil.apps.googleusercontent.com'
+    ),
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('765108291195390'),
+  },
+];
+export function provideConfig() {
+  return config;
+}
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -33,6 +49,7 @@ describe('AppComponent', () => {
               console.error(err);
             },
           } as SocialAuthServiceConfig,
+          SocialLoginModule,
         },
       ],
     }).compileComponents();
