@@ -26,5 +26,5 @@ This project is about Video File
 # Requirement Description
 
 
-    The application will only accept the Video file types
+    The application will only accept the Video file and also accept multiple video file.
     (mp4,m4v).
