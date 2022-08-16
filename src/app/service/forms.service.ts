@@ -177,4 +177,40 @@ export class FormsService {
     }
     return this.form;
   }
+
+  /**
+   * @desc Method will create credit card or debit card form with all validation. And Return a FormGroup
+   */
+  public createCardForm(): FormGroup {
+    let cardNumberCtrl = new FormControl('');
+    this.form.addControl('cadrNumber', cardNumberCtrl);
+    cardNumberCtrl.setValidators([
+      Validators.required,
+      Validators.pattern(
+        '([0-9]{4}[-. ]?){4}|[0-9]{4}[-. ]?[0-9]{6}[-. ]?[0-9]{5}'
+      ),
+    ]);
+
+    let expiryDateCtrl = new FormControl('');
+    this.form.addControl('expiryDate', expiryDateCtrl);
+    expiryDateCtrl.setValidators([Validators.required]);
+
+    let cvvCodeCtrl = new FormControl('');
+    this.form.addControl('cvvCode', cvvCodeCtrl);
+    cvvCodeCtrl.setValidators([
+      Validators.required,
+      Validators.pattern('^[0-9]{3,4}$'),
+    ]);
+
+    let cardHolderNameCtrl = new FormControl('');
+    this.form.addControl('cardHolderName', cardHolderNameCtrl);
+    cardHolderNameCtrl.setValidators([
+      Validators.required,
+      Validators.pattern('^[A-za-z]*$'),
+    ]);
+
+    this.form.removeControl('password');
+
+    return this.form;
+  }
 }
