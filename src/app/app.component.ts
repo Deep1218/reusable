@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { Observable } from 'rxjs';
 import { UploadService } from './Service/upload.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
@@ -40,7 +39,7 @@ export class AppComponent {
           alert("uploaded")
         }
       },
-        err => { 
+      err => { 
           this.progressInfos[0].value = 0;
           this.message = 'Could not upload the file:' + this.file.name;
         });
