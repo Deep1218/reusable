@@ -81,7 +81,7 @@ This code will automatically call the Google signIn method which will open popup
 
 ```
 <button (click)="signInFb()">
-    Login with Facebook
+  Login with Facebook
 </button>
 ```
 
@@ -89,10 +89,10 @@ This code will automatically call the Google signIn method which will open popup
 
 ```
 ngOnInit() {
-   this.authService.authState.subscribe((user) => {
-     this.user = user;
-     console.log(this.user);
-   });
+  this.authService.authState.subscribe((user) => {
+    this.user = user;
+    console.log(this.user);
+  });
 }
 ```
 
@@ -102,6 +102,6 @@ This will console the login details after signIn method called successfully.
 
 ```
 signInFb() {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
 }
 ```
