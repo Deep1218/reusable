@@ -10,7 +10,7 @@ import {
   faComment,
   
 } from '@fortawesome/free-regular-svg-icons';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-feed-card',
@@ -32,10 +32,10 @@ export class FeedCardComponent {
   @Input() postData!: any;
   @Input() userData!: any;
 
-  commentForm!: FormGroup;
+  commentForm!: UntypedFormGroup;
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.commentForm = this.fb.group({
       comment: ['', Validators.required],
     });

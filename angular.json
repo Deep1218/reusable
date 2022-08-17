@@ -102,7 +102,6 @@
       }
     }
   },
-  "defaultProject": "reusable",
   "cli": {
     "analytics": "f98b98a6-d9c9-480e-b2c5-606ae2ea6bc5"
   }
