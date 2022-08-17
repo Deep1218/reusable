@@ -1,15 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
-  faEllipsisVertical,
- 
-  faCommenting,faThumbsUp,faShare
+  faEllipsisH,
+  faThumbsUp,faShare, faXmark,faComment,
 } from '@fortawesome/free-solid-svg-icons';
-
-import {
- 
-  faComment,
-  
-} from '@fortawesome/free-regular-svg-icons';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -19,28 +12,20 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 })
 export class FeedCardComponent {
   hoverOn = false;
-  faEllipsisV = faEllipsisVertical;
-  faPaperclip = faCommenting;
-
-  
+  faEllipsisH =   faEllipsisH;
+  faXmark=faXmark;
   faThumbsUp=faThumbsUp;
   faComment = faComment;faShare=faShare;
 
-  
-
-  // Required Data
   @Input() postData!: any;
   @Input() userData!: any;
 
   commentForm!: UntypedFormGroup;
-
-
-  constructor(private fb: UntypedFormBuilder) {
+    constructor(private fb: UntypedFormBuilder) {
     this.commentForm = this.fb.group({
       comment: ['', Validators.required],
     });
   }
-
   onSubmit() {
     console.log(this.commentForm?.value);
     this.commentForm.reset();

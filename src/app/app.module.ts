@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FeedCardComponent } from './components/feed-card/feed-card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule,ReactiveFormsModule
+    FontAwesomeModule,ReactiveFormsModule, NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

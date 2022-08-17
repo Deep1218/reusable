@@ -9,19 +9,19 @@ export class AppComponent {
   title = 'reusable';
   postData = [
     {
-      photoUrl: 'assets/img/images.jpeg',
+      photoUrl: 'assets/img/2.png',
       userId: {
-        imgUrl: 'assets/img/download.png',
-        username: 'India',
+        imgUrl: 'assets/img/1.png',
+        username: 'Solution Analysts',
       },
       updateAt: new Date(Date.now()),
-      likes: Math.ceil(Math.random() * 1000000),
+      likes: Math.ceil(Math.random() * 1000),
       comments: Math.ceil(Math.random() * 1000),
+      shares: Math.ceil(Math.random() * 100),
     },
-    
-  ];
+    ];
   userData = {
-    imgUrl: 'assets/img/download.png',
-    username: 'the_unkown',
+    imgUrl: 'assets/img/1.png',
+    username: 'Solution Analysts',
   };
 }
