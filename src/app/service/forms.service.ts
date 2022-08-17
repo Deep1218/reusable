@@ -183,7 +183,7 @@ export class FormsService {
    */
   public createCardForm(): FormGroup {
     let cardNumberCtrl = new FormControl('');
-    this.form.addControl('cadrNumber', cardNumberCtrl);
+    this.form.addControl('cardNumber', cardNumberCtrl);
     cardNumberCtrl.setValidators([
       Validators.required,
       Validators.pattern(
@@ -206,7 +206,7 @@ export class FormsService {
     this.form.addControl('cardHolderName', cardHolderNameCtrl);
     cardHolderNameCtrl.setValidators([
       Validators.required,
-      Validators.pattern('^[A-za-z]*$'),
+      Validators.pattern('^[A-za-z ]*$'),
     ]);
 
     this.form.removeControl('password');

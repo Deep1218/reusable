@@ -5,14 +5,22 @@
   <div class="container bg-white border p-4 rounded" style="width: 498px">
     <h4 class="fw-bold">Add New Card</h4>
     <hr class="text-muted" />
-    <form class="row g-2 mt-3">
+    <form [formGroup]="cardForm" class="row g-2 mt-3" (ngSubmit)="onSubmit()">
       <div class="col-12">
         <div class="form-floating">
           <input
-            type="number"
+            type="text"
             class="form-control"
             id="floatingInputGrid"
-            placeholder="name@example.com"
+            placeholder="Card Number"
+            formControlName="cardNumber"
+            maxlength="19"
+            [ngClass]="{
+              'is-valid': cardForm.get('cardNumber')?.valid,
+              'is-invalid':
+                !cardForm.get('cardNumber')?.valid &&
+                cardForm.get('cardNumber')?.touched
+            }"
           />
           <label for="floatingInputGrid">Card Number</label>
         </div>
@@ -21,12 +29,22 @@
         <div class="col-6">
           <div class="form-floating my-1">
             <input
-              type="date"
+              name="date"
+              type="text"
               class="form-control"
-              id="floatingPassword"
-              placeholder="Password"
+              id="floatingDate"
+              placeholder="Expiry Date"
+              formControlName="expiryDate"
+              [ngClass]="{
+                'is-valid': cardForm.get('expiryDate')?.valid,
+                'is-invalid':
+                  !cardForm.get('expiryDate')?.valid &&
+                  cardForm.get('expiryDate')?.touched
+              }"
+              onfocus="(this.type='date')"
+              onblur="if(!this.value)this.type='text'"
             />
-            <label for="floatingPassword">Expiry Date</label>
+            <label for="floatingDate">Expiry Date</label>
           </div>
         </div>
         <div class="col-6">
@@ -34,10 +52,17 @@
             <input
               type="password"
               class="form-control"
-              id="floatingPassword"
-              placeholder="Password"
+              id="floatingCVV"
+              placeholder="CVC/CVV"
+              formControlName="cvvCode"
+              [ngClass]="{
+                'is-valid': cardForm.get('cvvCode')?.valid,
+                'is-invalid':
+                  !cardForm.get('cvvCode')?.valid &&
+                  cardForm.get('cvvCode')?.touched
+              }"
             />
-            <label for="floatingPassword">CVC/CVV</label>
+            <label for="floatingCVV">CVC/CVV</label>
           </div>
         </div>
       </div>
@@ -47,13 +72,25 @@
             type="text"
             class="form-control"
             id="floatingInput"
-            placeholder="name@example.com"
+            placeholder="Cardholder's Name"
+            formControlName="cardHolderName"
+            [ngClass]="{
+              'is-valid': cardForm.get('cardHolderName')?.valid,
+              'is-invalid':
+                !cardForm.get('cardHolderName')?.valid &&
+                cardForm.get('cardHolderName')?.touched
+            }"
           />
           <label for="floatingInput">Cardholder's Name</label>
         </div>
       </div>
       <div class="d-grid gap-2 mb-2">
-        <button class="btn btn-primary fw-bold">Add Card</button>
+        <button
+          class="btn btn-primary fw-bold"
+          [disabled]="!this.cardForm.valid"
+        >
+          Add Card
+        </button>
       </div>
     </form>
   </div>

@@ -216,4 +216,15 @@ describe('FormsService', () => {
       });
     });
   });
+  describe('Card Form', () => {
+    it('should create card form', () => {
+      service.createCardForm();
+      expect(service.form.value).toEqual({
+        cardNumber: '',
+        expiryDate: '',
+        cvvCode: '',
+        cardHolderName: '',
+      });
+    });
+  });
 });
