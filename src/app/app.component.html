@@ -1,9 +1,8 @@
 
-<div class="cotainer" style="margin-left: calc(70px + 1.5rem)">
-  <div class="row p-4 mx-4">
+<div class="cotainer " >
+  <div class="row m-2 justify-content-center">
     <app-feed-card
       *ngFor="let post of postData"
-      class="col-4"
       [postData]="post"
       [userData]="userData"
     ></app-feed-card>

@@ -21,13 +21,12 @@ export class FeedCardComponent {
   @Input() userData!: any;
 
   commentForm!: UntypedFormGroup;
+  item: undefined;
     constructor(private fb: UntypedFormBuilder) {
     this.commentForm = this.fb.group({
       comment: ['', Validators.required],
     });
   }
-  onSubmit() {
-    console.log(this.commentForm?.value);
-    this.commentForm.reset();
-  }
+
+ 
 }

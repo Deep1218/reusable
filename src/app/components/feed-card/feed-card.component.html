@@ -1,31 +1,32 @@
-<div
-  class="card mb-4 rounded-0">
-  <div class="card-body p-0">
+<div *ngIf="postData" class="row justify-content-center">
+  <div
+  class="col-4 card mb-4 rounded-0 p-0">
+  <div class="card-body p-0"> 
     <div class="col-12 p-2 border-bottom">
       <div class="row ms-2 align-items-center">
         <div class="col-1">
           <div
-            class="d-flex flex-column justify-content-center align-items-center mx-2"
+          class="d-flex flex-column justify-content-center align-items-center mx-2"
           >
-            <div class="position-relative story-circle">
-              <img
-                [src]="postData.userId.imgUrl"
-                alt="userProfile"
-                class="img-fluid rounded-circle"
-              />
-            </div>
+          <div class="position-relative story-circle">
+            <img
+            [src]="postData.userId.imgUrl"
+            alt="userProfile"
+            class="img-fluid rounded-circle"
+            />
           </div>
         </div>
-        <div class="col-9">
-          <div class="d-flex flex-column mx-2 justify-content-start">
-            <p class="mb-0 fw-bold" style="font-size: 20px">
-              {{ postData.userId.username }}
-            </p>
-            <p class="text-mute mb-0" style="font-size: 12px">
-              {{ postData.updateAt }}
-            </p>
-          </div>
+      </div>
+      <div class="col-9">
+        <div class="d-flex flex-column mx-2 justify-content-start">
+          <p class="mb-0 fw-bold" style="font-size: 30px">
+            {{ postData.userId.username }}
+          </p>
+          <p class="text-mute mb-0" style="font-size: 12px">
+            {{ postData.updateAt }}
+          </p>
         </div>
+      </div>
         <div class="col-2">
           <!-- Dropdown -->
           <div class="d-flex justify-content-between align-items-center">
@@ -39,38 +40,43 @@
         </div>
       </div>
     </div>
-    <div class="col-12" style="cursor: pointer">
       <div
-        class="d-flex justify-content-center align-items-center h-100"
+      class="d-flex justify-content-center align-items-center w-100"
       >
-        <img [src]="postData.photoUrl" class="card-img-top" alt="..." />
-      </div>
+      <img [src]="postData.photoUrl" class="card-img-top rounded-0" alt="..." />
     </div>
-    <div class="col-12 d-flex justify-content-between">
-      <div class="d-flex justify-content-center align-items-center mx-2">
-        <span>👍😲😍{{ postData.likes}}</span>
-
-      </div>
-      <div class="d-flex justify-content-center align-items-center mx-2">
-        <span class="inline-block">{{ postData.comments }} comments<span class="fs-4 mx-1 text-muted">.</span>{{ postData.shares }} Share</span>
-      </div>
-    </div>  
+  <div class="col-12 d-flex justify-content-between">
+    <div class="d-flex justify-content-center align-items-center mx-2">
+      <span>👍😲😍{{ postData.likes}}</span>
       
     </div>
-    <div class="col-12 p-2 border-top">
-      <div class="d-flex justify-content-between align-items-center">
-        <div role="button">
-          <fa-icon [icon]="faThumbsUp" class="fs-4 mx-2">likes</fa-icon>
-          <span class="text-muted ms-2">Like</span>
-        </div>
-        <div role="button">
-          <fa-icon [icon]="faComment" class="fs-4 mx-2">comments</fa-icon>
-          <span class="text-muted ms-2">Comment</span>
-        </div>
-        <div role="button">
-          <fa-icon [icon]="faShare" class="fs-4 mx-2">Share</fa-icon>
-          <span class="text-muted ms-2">Share</span>
-        </div>
-      </div>
+    <div class="d-flex justify-content-center align-items-center mx-2">
+      <span class="inline-block">{{ postData.comments }} comments<span class="fs-4 mx-1 text-muted">.</span>{{ postData.shares }} Share</span>
     </div>
+  </div>  
+  
 </div>
+
+<!-- icon  -->
+<div class="col-12 p-2 border-top">
+  <div class="d-flex justify-content-between align-items-center">
+    <div role="button">
+      <fa-icon [icon]="faThumbsUp" class="fs-4 mx-2">likes</fa-icon>
+      <span class="text-muted ms-2">Like</span>
+    </div>
+    <div role="button">
+      <fa-icon [icon]="faComment" class="fs-4 mx-2">comments</fa-icon>
+      <span class="text-muted ms-2">Comment</span>
+    </div>
+    <div role="button">
+      <fa-icon [icon]="faShare" class="fs-4 mx-2">Share</fa-icon>
+      <span class="text-muted ms-2">Share</span>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+
