@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   postData = [
     {
+      // set the profile image  and post image url & profile name also into arr
       photoUrl: 'assets/img/2.png',
       userId: {
         imgUrl: 'assets/img/1.png',

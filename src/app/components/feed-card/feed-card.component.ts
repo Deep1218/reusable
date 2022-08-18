@@ -11,12 +11,13 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
   styleUrls: ['./feed-card.component.css'],
 })
 export class FeedCardComponent {
+  
   hoverOn = false;
   faEllipsisH =   faEllipsisH;
   faXmark=faXmark;
   faThumbsUp=faThumbsUp;
   faComment = faComment;faShare=faShare;
-
+// get the post data & usre data 
   @Input() postData!: any;
   @Input() userData!: any;
 
