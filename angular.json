@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -89,6 +90,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "codeCoverage": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -102,5 +104,7 @@
       }
     }
   },
-  "defaultProject": "reusable"
+  "cli": {
+    "analytics": "f98b98a6-d9c9-480e-b2c5-606ae2ea6bc5"
+  }
 }

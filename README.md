@@ -1,27 +1,33 @@
-# Reusable
+#  Facebook Layout
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+This project is about Facebooklayout
 
-## Development server
+# Project Prerequisite
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Angular CLI v13.0.0
+2. Node.js v16.16.0
 
-## Code scaffolding
+# Adding Component to your project
+1. Copy App module [folder](https://github.com/Deep1218/reusable/tree/Facebook/src/app/components/feed-card)) to your project
+2. Add fed-card component to your module
+3. also add in app.compoent  your compoent for set the profile image  and post image url & profile name.
+4. Project uses [ngx-bootstrap](https://www.npmjs.com/package/ngx-bootstrap) v13.0.0, To add ngx-bootstrap : <br /> `ng add ngx-bootstrap@13.0.0`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Running Development server
 
-## Build
+1. `npm i` in root directory
+2. `ng serve` for dev server (`http://localhost:4200`)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+# Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Run `ng test` to execute the unit tests via [Karma]
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    
+
+
+ 
