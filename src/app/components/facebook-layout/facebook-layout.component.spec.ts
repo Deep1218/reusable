@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule} from '@angular/forms';
-import { FeedCardComponent } from './feed-card.component';
+import { FacebookLayoutComponent } from './facebook-layout.component';
 describe('FeedCardComponent', () => {
-  let component: FeedCardComponent;
-  let fixture: ComponentFixture<FeedCardComponent>;
+  let component: FacebookLayoutComponent;
+  let fixture: ComponentFixture<FacebookLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FeedCardComponent ],
+      declarations: [ FacebookLayoutComponent ],
       imports: [ReactiveFormsModule]
     })
     .compileComponents();
   });
   beforeEach(() => {
-    fixture = TestBed.createComponent(FeedCardComponent);
+    fixture = TestBed.createComponent(FacebookLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

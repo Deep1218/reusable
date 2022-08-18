@@ -2,10 +2,18 @@
 <div class="cotainer " >
   <div class="row m-2 justify-content-center">
     <!-- all postData& userData passing  -->
-    <app-feed-card
-      *ngFor="let post of postData"
-      [postData]="post"
-      [userData]="userData"
-    ></app-feed-card>
+
+      <!-- <app-facebook-layout
+        *ngFor="let post of postData"
+        [postData]="post"
+        [userData]="userData"
+      ></app-facebook-layout> -->
+
+      <app-instagram-layout
+        *ngFor="let post of postData"
+        [postData]="post"
+        [userData]="userData"
+      ></app-instagram-layout>
+
   </div>
 </div>

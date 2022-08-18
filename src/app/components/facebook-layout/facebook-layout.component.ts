@@ -6,11 +6,11 @@ import {
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-feed-card',
-  templateUrl: './feed-card.component.html',
-  styleUrls: ['./feed-card.component.css'],
+  selector: 'app-facebook-layout',
+  templateUrl: './facebook-layout.component.html',
+  styleUrls: ['./facebook-layout.component.css'],
 })
-export class FeedCardComponent {
+export class FacebookLayoutComponent {
   
   hoverOn = false;
   faEllipsisH =   faEllipsisH;
