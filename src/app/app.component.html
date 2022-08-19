@@ -1,19 +1,28 @@
-
+<nav class="navbar bg-light position-fixed">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-center w-100">
+      <button class="btn btn-primary mx-2" (click)="onClick('facebook')" [disabled]="toggleLayout">Facebook</button>
+      <button class="btn btn-success mx-2" (click)="onClick('instagram')" [disabled]="!toggleLayout">Instagram</button>
+    </div>
+  </div>
+</nav>
 <div class="cotainer " >
   <div class="row m-2 justify-content-center">
     <!-- all postData& userData passing  -->
-
+    <div *ngIf="toggleLayout">
       <app-facebook-layout
-        *ngFor="let post of postData"
-        [postData]="post"
-        [userData]="userData"
+      *ngFor="let post of postData"
+      [postData]="post"
+      [userData]="userData"
       ></app-facebook-layout>
-
-      <!-- <app-instagram-layout
-        *ngFor="let post of postData"
-        [postData]="post"
-        [userData]="userData"
-      ></app-instagram-layout> -->
+    </div>
+    <div *ngIf="!toggleLayout">
+      <app-instagram-layout
+      *ngFor="let post of postData"
+      [postData]="post"
+      [userData]="userData"
+      ></app-instagram-layout>
+    </div>
 
   </div>
 </div>

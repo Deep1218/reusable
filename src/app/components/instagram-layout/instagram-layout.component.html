@@ -1,119 +1,124 @@
 <div *ngIf="postData" class="row justify-content-center">
-<div
-  class=" col-4 card mb-4 rounded-0 p-0"
-  [ngClass]="{ 'shadow-lg': hoverOn, 'border-0': hoverOn }"
-  style="border-top-width: 5px"
-  [style.borderTopColor]="borderColor"
-  (mouseenter)="hoverOn = true"
-  (mouseleave)="hoverOn = false"
->
-  <div class="card-body p-0">
-    <div class="col-12 p-2 border-bottom">
-      <div class="row ms-2 align-items-center">
-        <div class="col-1">
-          <div
-            class="d-flex flex-column justify-content-center align-items-center mx-2"
-          >
-            <div class="position-relative story-circle">
-              <img
-                [src]="postData.userId.imgUrl"
-                alt="userProfile"
-                class="img-fluid rounded-circle border"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="col-9">
-          <div class="d-flex flex-column mx-2 justify-content-start">
-            <p class="mb-0 fw-bold" style="font-size: 20px">
-              {{ postData.userId.username }}
-            </p>
-            <p class="text-mute mb-0" style="font-size: 12px">
-              {{ postData.updateAt }}
-            </p>
-          </div>
-        </div>
-        <div class="col-2">
-          <!-- Dropdown -->
-          <p class="mb-0 fs-3 text-center" role="button">
-            <fa-icon [icon]="faEllipsisV"></fa-icon>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12" style="cursor: pointer">
-      <div
-        class="d-flex justify-content-center align-items-center"
-        style="height: 100%"
-      >
-        <img [src]="postData.photoUrl" class="card-img-top" alt="..." />
-      </div>
-    </div>
-    <div class="col-12 p-2 border-top">
-      <div class="d-flex justify-content-between align-items-center">
-        <div >
-          <fa-icon [icon]="faHeart" class="fs-3 mx-2"role="button"></fa-icon>
-          <fa-icon [icon]="faComment" class="fs-3 mx-2"role="button"></fa-icon>
-          <fa-icon [icon]="faPaperPlane" class="fs-3 mx-2"role="button"></fa-icon>
-        </div>
-        <div>
-          <fa-icon [icon]="faBookmark" class="fs-3 mx-2"role="button"></fa-icon>
-        </div>  
-      </div>
-      <div class="inline-block my-1 mx-2">
-        <span class="fw-bold">{{ postData.likes }} Likes</span>
-      </div>
-      <div class="inline-block mt-1 mx-2">
-        <a href="#" class="text-decoration-none">
-          <span class="text-muted"
-            >View all {{ postData.comments }} comments</span
-          >
-        </a>
-      </div>
-    </div>
-    <div class="col-12 p-2 border-top">
-      <div class="d-flex align-items-center">
-        <div>
-          <div
-            class="d-flex flex-column justify-content-center align-items-center mx-2"
-          >
-            <div class="position-relative story-circle-small">
-              <img
-                src="assets/img/1.png"
-                alt="userProfile"
-                class="img-fluid rounded-circle border"
-              />
-            </div>
-          </div>
-        </div>
-        <form
-          style="width: 100%"
-          [formGroup]="commentForm"
-          (ngSubmit)="onSubmit()"
-        >
-          <div class="input-group flex-nowrap">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Add a comment..."
-              formControlName="comment"
-              aria-describedby="addon-wrapping"
-            />
-            <!-- On valid add btn-primary btn -->
-            <button
-              class="input-group-text"
-              [ngClass]="{
-                'btn btn-primary': !commentForm.get('comment')?.invalid
-              }"
-              id="addon-wrapping"
-              type="submit"
+  <div class="col-4 card mb-4 rounded-0 p-0">
+    <div class="card-body p-0">
+      <div class="col-12 p-2 border-bottom">
+        <div class="row ms-2 align-items-center">
+          <div class="col-1">
+            <div
+              class="d-flex flex-column justify-content-center align-items-center mx-2"
             >
-              <fa-icon [icon]="faPaperclip"></fa-icon>
-            </button>
+              <div class="position-relative story-circle">
+                <img
+                  [src]="postData.userId.imgUrl"
+                  alt="userProfile"
+                  class="img-fluid rounded-circle border"
+                />
+              </div>
+            </div>
           </div>
-        </form>
+          <div class="col-9">
+            <div class="d-flex flex-column mx-2 justify-content-start">
+              <p class="mb-0 fw-bold" style="font-size: 20px">
+                {{ postData.userId.username }}
+              </p>
+              <p class="text-mute mb-0" style="font-size: 12px">
+                {{ postData.updateAt }}
+              </p>
+            </div>
+          </div>
+          <div class="col-2">
+            <!-- Dropdown -->
+            <p class="mb-0 fs-3 text-center" role="button">
+              <fa-icon [icon]="faEllipsisV"></fa-icon>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" style="cursor: pointer">
+        <div
+          class="d-flex justify-content-center align-items-center"
+          style="height: 100%"
+        >
+          <img [src]="postData.photoUrl" class="card-img-top" alt="..." />
+        </div>
+      </div>
+      <div class="col-12 p-2 border-top">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <fa-icon [icon]="faHeart" class="fs-3 mx-2" role="button"></fa-icon>
+            <fa-icon
+              [icon]="faComment"
+              class="fs-3 mx-2"
+              role="button"
+            ></fa-icon>
+            <fa-icon
+              [icon]="faPaperPlane"
+              class="fs-3 mx-2"
+              role="button"
+            ></fa-icon>
+          </div>
+          <div>
+            <fa-icon
+              [icon]="faBookmark"
+              class="fs-3 mx-2"
+              role="button"
+            ></fa-icon>
+          </div>
+        </div>
+        <div class="inline-block my-1 mx-2">
+          <span class="fw-bold">{{ postData.likes }} Likes</span>
+        </div>
+        <div class="inline-block mt-1 mx-2">
+          <a href="#" class="text-decoration-none">
+            <span class="text-muted"
+              >View all {{ postData.comments }} comments</span
+            >
+          </a>
+        </div>
+      </div>
+      <div class="col-12 p-2 border-top">
+        <div class="d-flex align-items-center">
+          <div>
+            <div
+              class="d-flex flex-column justify-content-center align-items-center mx-2"
+            >
+              <div class="position-relative story-circle-small">
+                <img
+                  src="assets/img/1.png"
+                  alt="userProfile"
+                  class="img-fluid rounded-circle border"
+                />
+              </div>
+            </div>
+          </div>
+          <form
+            style="width: 100%"
+            [formGroup]="commentForm"
+            (ngSubmit)="onSubmit()"
+          >
+            <div class="input-group flex-nowrap">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Add a comment..."
+                formControlName="comment"
+                aria-describedby="addon-wrapping"
+              />
+              <!-- On valid add btn-primary btn -->
+              <button
+                class="input-group-text"
+                [ngClass]="{
+                  'btn btn-primary': !commentForm.get('comment')?.invalid
+                }"
+                id="addon-wrapping"
+                type="submit"
+              >
+                <fa-icon [icon]="faPaperclip"></fa-icon>
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>

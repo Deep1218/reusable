@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  toggleLayout: boolean = true;
   postData = [
     {
       // set the profile image  and post image url & profile name also into arr
@@ -35,4 +36,13 @@ export class AppComponent {
     imgUrl: 'assets/img/1.png',
     username: 'Solution Analysts',
   };
+
+  onClick(layout: string){
+    if(layout == 'facebook'){
+      this.toggleLayout = true;
+    } else if(layout == 'instagram'){
+      this.toggleLayout = false;
+    }
+  }
 }
+

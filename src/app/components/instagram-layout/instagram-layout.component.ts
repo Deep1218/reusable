@@ -46,17 +46,6 @@ export class InstagramLayoutComponent implements OnInit {
 
   commentForm!: FormGroup;
 
-  hexCode = [
-    '#00A9EC',
-    '#00DFB5',
-    '#3B85DA',
-    '#2FC193',
-    '#7B91BC',
-    '#D26321',
-    '#004995',
-    '#003780',
-    '#EC3F79',
-  ];
 
   constructor(private fb: FormBuilder) {
     this.commentForm = this.fb.group({
@@ -65,8 +54,7 @@ export class InstagramLayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.borderColor =
-      this.hexCode[Math.floor(Math.random() * this.hexCode.length)];
+    
   }
   onSubmit() {
     console.log(this.commentForm?.value);
