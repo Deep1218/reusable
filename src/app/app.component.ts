@@ -32,11 +32,14 @@ export class AppComponent {
       shares: Math.ceil(Math.random() * 100),
     },
   ];
+  // instagram AddComment. set the profile image &username
   userData = {
     imgUrl: 'assets/img/1.png',
     username: 'Solution Analysts',
   };
+  
 
+  // check view layout
   onClick(layout: string){
     if(layout == 'facebook'){
       this.toggleLayout = true;

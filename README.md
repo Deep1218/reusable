@@ -8,10 +8,15 @@ This project is about Facebooklayout & instagramlayout
 2. Node.js v16.16.0
 
 # Adding Component to your project
-1. Copy App module [folder](https://github.com/Deep1218/reusable/tree/Facebook/src/app/components/feed-card)) to your project
-2. Add fed-card component to your module
-3. also add in app.compoent  your compoent for set the profile image  and post image url & profile name.
-4. Project uses [ngx-bootstrap](https://www.npmjs.com/package/ngx-bootstrap) v13.0.0, To add ngx-bootstrap : <br /> `ng add ngx-bootstrap@13.0.0`
+1. It [folder](https://github.com/Deep1218/reusable/tree/facebook-instagram-layout/src/app/components) to your project
+2. If FacebookLayout components  then copy this module [folder](https://github.com/Deep1218/reusable/tree/facebook-instagram-layout/src/app/components/facebook-layout)
+
+3. If InstagramLayout components  then copy this module [folder](https://github.com/Deep1218/reusable/tree/facebook-instagram-layout/src/app/components/instagram-layout)
+
+4. also add in app.compoent  your compoent for set the profile image  and post image url & profile name [folder](https://github.com/Deep1218/reusable/tree/facebook-instagram-layout/src/app).
+
+5. Project uses [ngx-bootstrap](https://www.npmjs.com/package/ngx-bootstrap) v13.0.0, To add ngx-bootstrap : <br /> `ng add ngx-bootstrap@13.0.0`
+
 
 # Running Development server
 
