@@ -51,4 +51,21 @@ describe('ListOneComponent', () => {
       expect(component.line2).toBeFalse();
     }
   });
+
+  it("should set 'title' when 'name' key in the ListData interface", () => {
+    component.data = {
+      id: 1,
+      imgUrl: 'assets/img/sample-img.jpg',
+      name: 'Oranges',
+      line1: '50 / Kg',
+      line2: 'Farm picked fresh oranges.',
+    };
+    component.setProperties();
+    fixture.detectChanges();
+    if (component.data.title || component.data.name) {
+      expect(component.title).toBeTrue();
+    } else {
+      expect(component.title).toBeFalse();
+    }
+  });
 });

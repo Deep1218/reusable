@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { listData } from './components/list-one/list-one.component';
+import { ListData } from './components/list-one/list-one.component';
 import * as _ from 'lodash';
 
 @Component({
@@ -7,7 +7,7 @@ import * as _ from 'lodash';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  data: listData[] = [
+  data: ListData[] = [
     {
       id: 1,
       imgUrl: 'assets/img/sample-img.jpg',

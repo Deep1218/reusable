@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-export interface listData {
+export interface ListData {
   id: number;
   imgUrl?: string;
   title?: string;
@@ -18,7 +18,7 @@ export class ListOneComponent implements OnInit {
   line1: boolean = false;
   line2: boolean = false;
 
-  @Input() data!: listData;
+  @Input() data!: ListData;
   @Input() border: boolean = true;
   @Input() position: string = 'start';
   @Input() imgShape: string = 'rounded';
