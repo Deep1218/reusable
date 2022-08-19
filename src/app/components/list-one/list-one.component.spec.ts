@@ -8,18 +8,47 @@ describe('ListOneComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListOneComponent ]
-    })
-    .compileComponents();
+      declarations: [ListOneComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ListOneComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    component.data = {
+      id: 1,
+      imgUrl: 'assets/img/sample-img.jpg',
+      title: 'Oranges',
+      line1: '50 / Kg',
+      line2: 'Farm picked fresh oranges.',
+    };
   });
 
-  it('should create', () => {
+  it("should create and call 'setProperties' method", () => {
+    const mockSetProperties = spyOn(component, 'setProperties');
+    fixture.detectChanges();
+    expect(mockSetProperties).toHaveBeenCalled();
     expect(component).toBeTruthy();
+  });
+
+  it("should set 'img', 'title', 'line1, and 'line2'", () => {
+    component.setProperties();
+    fixture.detectChanges();
+    if (
+      component.data.imgUrl &&
+      (component.data.title || component.data.name) &&
+      component.data.line1 &&
+      component.data.line2
+    ) {
+      expect(component.img).toBeTrue();
+      expect(component.title).toBeTrue();
+      expect(component.line1).toBeTrue();
+      expect(component.line2).toBeTrue();
+    } else {
+      expect(component.img).toBeFalse();
+      expect(component.title).toBeFalse();
+      expect(component.line1).toBeFalse();
+      expect(component.line2).toBeFalse();
+    }
   });
 });

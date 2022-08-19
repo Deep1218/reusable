@@ -11,7 +11,6 @@ export interface listData {
 @Component({
   selector: 'app-list-one',
   templateUrl: './list-one.component.html',
-  styleUrls: ['./list-one.component.css'],
 })
 export class ListOneComponent implements OnInit {
   img: boolean = false;
@@ -23,8 +22,6 @@ export class ListOneComponent implements OnInit {
   @Input() border: boolean = true;
   @Input() position: string = 'start';
   @Input() imgShape: string = 'rounded';
-
-  constructor() {}
 
   ngOnInit(): void {
     this.setProperties();

@@ -5,7 +5,6 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   data: listData[] = [
@@ -55,22 +54,19 @@ export class AppComponent {
         break;
     }
   }
-  // Lodash sort
+
   sortAscendingTitle() {
     this.data = _.sortBy(this.data, 'title');
   }
 
-  // Lodash reverse
   sortDescendingTitle() {
     this.data = _.sortBy(this.data, 'title').reverse();
   }
 
-  // Lodash sort
   sortAscendingNumber() {
     this.data = _.sortBy(this.data, 'id');
   }
 
-  // Lodash reverse
   sortDescendingNumber() {
     this.data = _.sortBy(this.data, 'id').reverse();
   }
