@@ -1,19 +1,39 @@
-<div class="col-12 d-flex mt-3 align-items-center rounded p-2">
+<div
+  class="col-12 d-flex mt-3 align-items-center rounded p-2"
+  [ngClass]="{ border: border }"
+>
   <img
-    class="img-fuild rounded"
-    src="assets/img/sample-img.jpg"
+    class="img-fuild"
+    [ngClass]="{
+      'rounded-circle': imgShape == 'circle',
+      rounded: imgShape == 'rounded'
+    }"
+    *ngIf="img && position == 'start'"
+    [src]="data.imgUrl"
     alt="img"
     width="110"
   />
-  <div class="row ms-3" style="width: 400px">
-    <div class="col-12">
-      <span class="inline-block fs-3 fw-bold">Name</span>
+  <div class="row ms-3 w-100">
+    <div class="col-12 text-truncate" *ngIf="title">
+      <span class="fs-3 fw-bold">{{ data.name || data.title }}</span>
     </div>
-    <div class="col-12">
-      <span class="inline-block text-small">Line 1</span>
+    <div class="col-12 text-truncate" *ngIf="line1">
+      <span class="text-small">{{ data.line1 }}</span>
     </div>
-    <div class="col-12">
-      <span class="inline-block text-muted">Line 2</span>
+    <div class="col-12 text-truncate" *ngIf="line2">
+      <span class="text-muted">{{ data.line2 }}</span>
     </div>
   </div>
+  <img
+    class="img-fuild me-3"
+    [ngClass]="{
+      'rounded-circle': imgShape == 'circle',
+      rounded: imgShape == 'rounded'
+    }"
+    *ngIf="img && position == 'end'"
+    [src]="data.imgUrl"
+    alt="img"
+    width="110"
+  />
 </div>
+<hr *ngIf="!border" />

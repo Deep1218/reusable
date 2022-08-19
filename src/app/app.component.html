@@ -1,9 +1,48 @@
+<nav class="navbar navbar-dark bg-dark position-fixed">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-center">
+      <div class="btn-group" dropdown>
+        <button
+          id="button-basic"
+          dropdownToggle
+          type="button"
+          class="btn btn-light dropdown-toggle"
+          aria-controls="dropdown-basic"
+        >
+          Sort By <span class="caret"></span>
+        </button>
+        <ul
+          id="dropdown-basic"
+          *dropdownMenu
+          class="dropdown-menu"
+          style="cursor: pointer"
+          role="menu"
+          aria-labelledby="button-basic"
+        >
+          <li role="menuitem" (click)="onClick(3)">
+            <span class="dropdown-item">Ascending Index</span>
+          </li>
+          <li role="menuitem" (click)="onClick(4)">
+            <span class="dropdown-item">Descending Index</span>
+          </li>
+          <li role="menuitem" (click)="onClick(1)">
+            <span class="dropdown-item">A-Z</span>
+          </li>
+          <li role="menuitem" (click)="onClick(2)">
+            <span class="dropdown-item">Z-A</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
 <div class="container">
-  <div class="row">
-    <app-list-one></app-list-one>
-    <hr />
-    <app-list-one></app-list-one>
-    <hr />
-    <app-list-one></app-list-one>
+  <div class="row" *ngFor="let item of data">
+    <app-list-one
+      [data]="item"
+      [border]="true"
+      position="start"
+      imgShape="normal"
+    ></app-list-one>
   </div>
 </div>
