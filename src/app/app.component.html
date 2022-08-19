@@ -8,7 +8,7 @@
 </nav>
 <div class="cotainer " >
   <div class="row m-2 justify-content-center">
-    <!-- all postData& userData passing  -->
+    <!--  facebook all postData& userData passing  -->
     <div *ngIf="toggleLayout">
       <app-facebook-layout
       *ngFor="let post of postData"
@@ -16,6 +16,7 @@
       [userData]="userData"
       ></app-facebook-layout>
     </div>
+        <!--  instagram all postData& userData passing  -->
     <div *ngIf="!toggleLayout">
       <app-instagram-layout
       *ngFor="let post of postData"
