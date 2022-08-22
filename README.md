@@ -4,7 +4,7 @@
 
 ## Description
 
-This is the service which is developed under the Angular 13.0.0 framework to provide the easier and fast creation of the of the form with some predefine fields form which which you can choose. For reCaptcha we have used `ngx-recaptcha` [package](https://github.com/Enngage/ngx-captcha).
+This is the service which is developed under the Angular 13.0.0 framework to provide the easier and fast creation of the form with some predefine fields form which which you can choose. For reCaptcha we have used `ngx-recaptcha` [package](https://github.com/Enngage/ngx-captcha).
 
 ## Configuration
 
@@ -24,7 +24,7 @@ export class AppModule { }
 
 import the following modules in the `app.module.ts` file to use this service.
 
-Copy and Past the below 2 file to your project [here](https://github.com/Deep1218/reusable/tree/login-with-recaptcha/src/app/service).
+Copy and Past the below 2 file to your project [here](https://github.com/Deep1218/reusable/tree/signup-with-recaptcha/src/app/service).
 
 1. forms.service.ts
 2. forms.service.spec.ts (optional)
