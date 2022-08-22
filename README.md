@@ -4,7 +4,7 @@
 
 ## Description
 
-This is the service which is developed under the Angular 13.0.0 framework to provide the easier and fast creation of the of the form with some predefine fields form which which you can choose. For reCaptcha we have used `ngx-recaptcha` [package](https://github.com/Enngage/ngx-captcha).
+This is the service which is developed under the Angular 13.0.0 framework to provide the easier and fast creation of the form with some predefine fields form which which you can choose. For reCaptcha we have used `ngx-recaptcha` [package](https://github.com/Enngage/ngx-captcha).
 
 ## Configuration
 
