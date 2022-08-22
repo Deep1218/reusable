@@ -1,27 +1,93 @@
-# Reusable
+# Thumbnail List
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+![Logo](https://www.solutionanalysts.com/wp-content/uploads/2021/02/SA-Logo-high.png)
 
-## Development server
+## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This is the component which is developed under the Angular 13.0.0 framework to provide the easier and fast creation of the listing with some modification.
 
-## Code scaffolding
+## Add Dependencies
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`npm install ng-bootstrap@8.0`
 
-## Build
+`npm install bootstrap@5.1`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`npm install lodash`
 
-## Running unit tests
+## Configuration
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Import the component in the `app.module.ts` file to use it.
 
-## Running end-to-end tests
+Copy the [list-one](https://github.com/Deep1218/reusable/tree/thumbnail-list/src/app) folder to your project.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-## Further help
+...
+import { ListOneComponent } from './components/list-one/list-one.component';
+...
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+@NgModule({
+    ...
+    declarations: [
+        ...
+        ListOneComponent,
+        ...
+    ],
+    ...
+})
+export class AppModule {}
+```
+
+## How to Use Component
+
+After importing use its selector tag to use it as shown below.
+
+src/app.component.html
+
+```
+<div class="row" *ngFor="let item of data">
+  <app-list-one
+    [data]="item"
+    [border]="true"
+    position="start"
+    imgShape="normal"
+  ></app-list-one>
+</div>
+```
+
+src/app.component.ts
+
+```
+data: ListData[] = [...]
+```
+
+### Properties:-
+
+| Property     | Values                                  | Description                                                                                 |
+| ------------ | --------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `[data]`     | Object with the interface of `listData` | Display the items in the list.                                                              |
+| `[border]`   | `true` or `false`                       | Default `true`, Show border of the item in the list if true else `<hr/>` tag at the bottom. |
+| `[position]` | `start` or `end`                        | Default `start`, Display the image at the beginning of the item else at the `end`.          |
+| `[imgShape]` | `normal`, `rounded` or `circle`         | Default `rounded`, It will set the border style of the image.                               |
+
+### Interface:-
+
+This interface is used `@Input() data` in the component.
+
+```
+interface ListData {
+  id: number;
+  imgUrl?: string;
+  title?: string;
+  name?: string;
+  line1?: string;
+  line2?: string;
+}
+
+```
+
+## Unit Testing Result:-
+
+![testingResult](./src/assets/img/testingResult.png)
