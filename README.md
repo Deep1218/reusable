@@ -30,7 +30,7 @@ export class AppModule {}
 
 import the following modules in the `app.module.ts` file to use this service.
 
-Copy and Past the below 2 file to your project [here](https://github.com/Deep1218/reusable/tree/login-with-recaptcha/src/app/service).
+Copy and Past the below 2 file to your project [here](https://github.com/Deep1218/reusable/tree/view-card-ui/src/app/service).
 
 1. forms.service.ts
 2. forms.service.spec.ts (optional)
