@@ -6,10 +6,9 @@ import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  data:any;
 separateDialCode = false;
 	SearchCountryField = SearchCountryField;
 	CountryISO = CountryISO;
@@ -19,7 +18,9 @@ separateDialCode = false;
 		phone: new FormControl(undefined, [Validators.required])
 	});
   submit(){
-    console.log(this.phoneForm.value)
+    this.data =this.phoneForm.value;
+
+
   }
 }
 

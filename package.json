@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "sonar": "sonar-scanner -Dsonar.login=admin -Dsonar.password=nilesh789 -Dproject.settings=./file.properties"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,7 @@
     "ngx-bootstrap": "^6.2.0",
     "ngx-intl-tel-input": "^3.1.3",
     "rxjs": "~7.4.0",
+    "sonar-scanner": "^3.1.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
