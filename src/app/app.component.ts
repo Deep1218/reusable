@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'reusable';
+  data:any;
+  datepicker = new FormGroup({
+		Date: new FormControl(undefined, [Validators.required])
+	});
+  submit(){
+    this.data =this.datepicker.value;
+    console.log(this.data);
+    
+    
+  }
+
 }
