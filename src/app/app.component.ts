@@ -59,15 +59,15 @@ export class AppComponent {
 
   ngOnInit() {
     this.country.valueChanges.subscribe((country) => {
-      console.log('kjfdlf',country);
-      
+  
+       
       this.state.reset();
       this.state.disable();
       if (country) {
-        console.log('bfr',this.states)
+        
 
         this.states = this.service. getStatesByCountry(country);
-        console.log('after',this.states)
+      
         this.state.enable();
       }
     });
