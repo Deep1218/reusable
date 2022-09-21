@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 
-import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import{MatFormFieldModule}from '@angular/material/form-field';
 import {  MatNativeDateModule } from '@angular/material/core';
@@ -19,7 +19,7 @@ import { DatePipe } from '@angular/common';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+
     FormsModule,
     MatDatepickerModule,
     MatFormFieldModule,
